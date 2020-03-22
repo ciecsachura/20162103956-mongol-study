@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <button onclick="searchData()">sousu</button>
+</body>
+<script>
+    function searchData(){
+        $.get("/hello","name=张三",function(result){
+            console.log(result);
+        },"json")
+
+    }
+</script>
+</html>

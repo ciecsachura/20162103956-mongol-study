@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>enroll</title>
+<link rel="stylesheet" href="css/enroll.css" type="text/css">
+<script src="js/enroll.js"></script>
+     <script src="js/jquery-3.3.1.js"></script>
+
+</head>
+
+<body>
+<!--头部开始-->
+<div class="large-box">
+<header>
+    <div id="indexpic" onclick="show_indexpicM()">
+    
+   <a href="index.html"><img src="images/sytb.png" /></a>
+    </div>
+    <div id="menu" onclick="show_menuM()">
+   
+    <a href="login.html"><img src="images/txl3.png"/></a>
+    </div>
+</header>
+<!--头部结束-->
+     
+<form id="enrollForm" action="" accept-charset="UTF-8" onsubmit="return false"  class="login-form" tabindex="-1" method="post">
+    <div  class="form-enroll">
+        <input type="hidden" name="action" value="register">
+        	<div id="enrll-username" class=" username">
+            	<label>ᠬᠡᠷᠡᠭ᠍ᠯᠡᠭ᠍ᠴᠢ ᠵᠢᠨ ᠨᠡᠷ᠎ᠡ᠄
+                    <br />Хэрэглэгчийн нэр<br />
+              </label>
+                <input  type="text" name="username" required/>
+            </div>
+            <div class=" tel">
+            	<label>ᠤᠲᠠᠰᠤᠨ ᠨᠣᠮᠸᠷ᠄
+<br />Утасан номер<br />
+              </label>
+                <input type="tel" name="telephone" required/>
+            </div>
+            
+            <div class=" password">
+            	<label>ᠨᠢᠭᠤᠴᠠ ᠨᠣᠮᠸᠷ᠄ <br />
+Нууц  номер <br /></label>
+                <input type="password" name="password" required/>
+            </div>
+            <div class=" repeatpassword">
+            	<label>ᠨᠢᠭᠤᠴᠠ ᠨᠣᠮᠸᠷ ᠢᠡᠨ ᠨᠤᠲᠠᠯᠠᠬᠤ:<br />  Нууц номер ин нотлох<br /></label>
+                <input type="password" name="repeatpassword" required/>
+            </div>
+            <button onclick="enroll();"> ᠳᠠᠩᠰᠠᠯᠠᠬᠤ Данслах<br /></button>
+            <span id="msg" style="color: red;" ></span>
+    </div>
+    </form>
+
+
+<footer>
+</footer>
+</div>
+</body>
+<script>
+
+
+    //注册函数
+        function  enroll() {
+            //获取表单数据
+           /* debugger*/
+            var formData = $("#enrollForm").serialize();
+            //提交注册表单时的数据
+            $.post("enrollServlet",formData,function (result) {
+     //处理响应数据
+                console.log(result);
+                if(result.flag==true){
+                    //注册成功
+                    location.href = "/login.html"
+                }else{
+                    //注册失败
+                    var errorMsg = result.errorMsg;
+                    $("#msg").html(errorMsg);
+                    alert("Дансалсан амжилтгүй болсон");
+                }
+            },"json");
+        }
+
+</script>
+</html>
