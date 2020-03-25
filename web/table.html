@@ -17,10 +17,12 @@
     <!--搜索区域开始-->
     <div class="search">
         <form>
-            <select size="1">
-                <option  value="1" selected="selected">username</option>
-                <option value="2">tel</option>
-            </select>
+            <label>
+                <select size="1">
+                    <option value="1" selected="selected">username</option>
+                    <option value="2">tel</option>
+                </select>
+            </label>
             <input type="text" placeholder="请输入要搜索的内容" />
             <button>search</button>
         </form>
@@ -128,10 +130,8 @@
     function addUser() {
     if (confirm("添加？")){
         location.href="addUser.html";
-
     }
     }
-
     function deleteUser(uid) {
         console.log("++++"+uid);
         if (confirm("删除？")){
@@ -146,29 +146,13 @@
                  alert("删除失败")
              }
             },"json");
-
         }
-
     }
-
-
     function editUser(uid) {
         console.log(uid);
         if(confirm("编辑？")){
-            location.href="editUser.html";
-            $.post("/editUserServlet",{uid:uid},function (result) {
-                console.log("++++"+result);
-                if (result){
-                    alert("编辑成功")
-                    //页面重新加载
-
-                    location.reload()
-                }else {
-                    alert("编辑失败")
-                }
-            },"json");
+            location.href="editUser.html?uid="+uid;
         }
-
     }
 </script>
 

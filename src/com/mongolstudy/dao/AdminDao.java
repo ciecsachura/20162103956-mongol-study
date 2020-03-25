@@ -1,14 +1,15 @@
 package com.mongolstudy.dao;
 import com.mongolstudy.bean.User;
 import com.mongolstudy.utils.C3p0Utils;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 public class AdminDao {
-    JdbcTemplate jdbcTemplate = new JdbcTemplate(C3p0Utils.getDataSource());
+    private JdbcTemplate jdbcTemplate = new JdbcTemplate(C3p0Utils.getDataSource());
     /**
      * 查询所有数据
-     * @return
+     *
      */
     public List<User> queryAll() {
         //1、初始化JdbcTemplate模板：创建JdbcTemplate对象
@@ -84,11 +85,15 @@ public class AdminDao {
      * @param
      * @return
      */
-    public int editUser(int uid){
-        String sql ="UPDATE tab_user SET password =?,telephone=?,admin=?,grade=? WHERE uid=?";
-        int edit = jdbcTemplate.update(sql,uid
-                );
-        return edit;
+    public User editUser(int uid){
+        User user = new User();
+        String sql ="SELECT * FROM tab_user WHERE uid=? ";
+        try {
+            user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class),uid);
+        } catch (DataAccessException e) {
+
+        }
+        return user;
     }
 
     public int deleteUser(int uid) {

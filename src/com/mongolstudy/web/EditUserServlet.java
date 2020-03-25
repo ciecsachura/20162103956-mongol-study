@@ -17,22 +17,14 @@ public class EditUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     int uid =Integer.parseInt(request.getParameter("uid"));
+        //将user存入request
+
+        request.getSession().setAttribute("user",uid);
         ResultInfo resultInfo = new ResultInfo();
         //调用adminservice方法删除
         AdminService adminService=new AdminService();
-        int result = adminService.editUser(uid);
-        if (1 == result){
-            resultInfo.setFlag(true);
-        }else {
-            resultInfo.setFlag(false);
-        }
-        //跳转查询所有Servlet
-//        resp.sendRedirect(req.getContextPath()+"/UserPageQueryServlet");
-
-
-        String s = JSON.toJSONString(resultInfo);
-
-        response.getWriter().print(s);
+        String pageUserJson = adminService.editUser(uid);
+        response.getWriter().print(pageUserJson);
     }
 
 

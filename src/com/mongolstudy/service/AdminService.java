@@ -10,17 +10,36 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminService {
-    AdminDao adminDao=new AdminDao();
+    private AdminDao adminDao=new AdminDao();
     //增
-
+    public String addUser(User user) {
+        int addFlag=adminDao.addUser(user);
+        //封装结果
+        ResultInfo resultInfo = new ResultInfo();
+        if (addFlag == 0) {
+            resultInfo.setFlag(false);
+        } else {
+            resultInfo.setFlag(true);
+        }
+        String s = JSON.toJSONString(resultInfo);
+        return s;
+    }
 
 
     //删
+    public int deleteUser(int uid) {
+        return adminDao.deleteUser(uid);
+    }
 
 
     //改
-    public int editUser(int uid) {
-       return adminDao.editUser(uid);
+    public String editUser(int uid) {
+        User user = adminDao.editUser(uid);
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", user);
+        //转为json数据类型
+        String s = JSON.toJSONString(map);
+        return s;
     }
 
 
@@ -38,6 +57,13 @@ public class AdminService {
         String s = JSON.toJSONString(userList);
         return s;
     }
+
+    /**
+     * 普通用户分页查询
+     * @param strPageNum
+     * @param strPageSize
+     * @return
+     */
     public static String pageQuery(String strPageNum, String strPageSize) {
         AdminDao adminDao=new AdminDao();
         //分页数据查询处理
@@ -59,20 +85,4 @@ public class AdminService {
         return s;
     }
 
-    public int deleteUser(int uid) {
-        return adminDao.deleteUser(uid);
-    }
-
-    public String addUser(User user) {
-        int addFlag = adminDao.addUser(user);
-        //封装结果
-        ResultInfo resultInfo = new ResultInfo();
-        if (addFlag == 0) {
-            resultInfo.setFlag(false);
-        } else {
-            resultInfo.setFlag(true);
-        }
-        String s = JSON.toJSONString(resultInfo);
-        return s;
-    }
 }
