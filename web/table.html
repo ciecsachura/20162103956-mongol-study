@@ -125,17 +125,10 @@
 
         },"json");
     }
-    function addUser(uid) {
-    console.log(uid);
+    function addUser() {
     if (confirm("添加？")){
-        $.post("/addUserServlet",{uid:uid},function (result) {
-            if(result){
-                alert("添加成功");
-                location.reload()
-            }else {
-                alert("添加失败")
-            }
-        },"json")
+        location.href="addUser.html";
+
     }
     }
 
@@ -162,6 +155,7 @@
     function editUser(uid) {
         console.log(uid);
         if(confirm("编辑？")){
+            location.href="editUser.html";
             $.post("/editUserServlet",{uid:uid},function (result) {
                 console.log("++++"+result);
                 if (result){

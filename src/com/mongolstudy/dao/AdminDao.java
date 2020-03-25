@@ -65,12 +65,16 @@ public class AdminDao {
      */
     public int addUser(User user) {
         //写SQL：
-        String sql = "INSERT INTO tab_user (username,password,telephone) VALUES(?,?,?)";
+        String sql = "INSERT INTO tab_user (username,password,telephone,grade,admin,status,code) VALUES(?,?,?,?,?,?,?)";
         //执行SQL：
         int update = jdbcTemplate.update(sql,
                 user.getUsername(),
                 user.getPassword(),
-                user.getTelephone()
+                user.getTelephone(),
+                user.getGrade(),
+                user.getAdmin(),
+                user.getStatus(),
+                user.getCode()
         );
         return update;
     }

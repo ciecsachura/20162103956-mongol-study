@@ -1,6 +1,7 @@
 package com.mongolstudy.service;
 
 import com.alibaba.fastjson.JSON;
+import com.mongolstudy.bean.ResultInfo;
 import com.mongolstudy.bean.User;
 import com.mongolstudy.dao.AdminDao;
 
@@ -60,5 +61,18 @@ public class AdminService {
 
     public int deleteUser(int uid) {
         return adminDao.deleteUser(uid);
+    }
+
+    public String addUser(User user) {
+        int addFlag = adminDao.addUser(user);
+        //封装结果
+        ResultInfo resultInfo = new ResultInfo();
+        if (addFlag == 0) {
+            resultInfo.setFlag(false);
+        } else {
+            resultInfo.setFlag(true);
+        }
+        String s = JSON.toJSONString(resultInfo);
+        return s;
     }
 }
