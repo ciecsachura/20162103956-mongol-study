@@ -81,11 +81,12 @@ public class AdminDao {
     }
 
     /**
-     * 改
+     * 改   回显数据   修改数据
      * @param
      * @return
      */
-    public User editUser(int uid){
+
+    public User queryById(int uid){
         User user = new User();
         String sql ="SELECT * FROM tab_user WHERE uid=? ";
         try {
@@ -96,10 +97,29 @@ public class AdminDao {
         return user;
     }
 
+
+    /**
+     * 删
+     * @param uid
+     * @return
+     */
     public int deleteUser(int uid) {
         String sql="DELETE FROM tab_user WHERE uid=? ";
         return jdbcTemplate.update(sql,
                 uid
         );
+    }
+
+    public int updateUser(User user) {
+        String sql = "update tab_user set username =?, password= ?,admin =? ,grade =? ,telephone = ? where uid = ?";
+       int update = jdbcTemplate.update(sql,
+                user.getUsername(),
+                user.getPassword(),
+                user.getAdmin(),
+                user.getGrade(),
+                user.getTelephone(),
+                user.getUid()
+        );
+    return update;
     }
 }

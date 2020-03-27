@@ -33,8 +33,8 @@ public class AdminService {
 
 
     //改
-    public String editUser(int uid) {
-        User user = adminDao.editUser(uid);
+    public String findUserById(int uid) {
+        User user = adminDao.queryById(uid);
         Map<String, Object> map = new HashMap<>();
         map.put("user", user);
         //转为json数据类型
@@ -82,6 +82,20 @@ public class AdminService {
         map.put("totalPage", totalPage);
         //转为json数据类型
         String s = JSON.toJSONString(map);
+        return s;
+    }
+
+    public String updateUser(User user) {
+        //0：添加了0条数据--添加失败    1：添加成功
+        int addFlag = adminDao.updateUser(user);
+        //封装结果
+        ResultInfo resultInfo = new ResultInfo();
+        if (addFlag == 0) {
+            resultInfo.setFlag(false);
+        } else {
+            resultInfo.setFlag(true);
+        }
+        String s = JSON.toJSONString(resultInfo);
         return s;
     }
 

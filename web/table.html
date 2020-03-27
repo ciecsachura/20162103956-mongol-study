@@ -100,7 +100,7 @@
                     '    <td>'+u.admin+'</td>\n' +
                     '    <td>'+u.grade+'</td>\n' +
                     '    <td>'+u.telephone+'</td>\n' +
-                    '    <td><a onclick =\"deleteUser('+u.uid+');\">-</a><a onclick=\"editUser('+u.uid+');"><img src="images/bianji1.png"></a></td>' +
+                    '    <td><a onclick =\"deleteUser('+u.uid+');\">-</a><a onclick=\"findId('+u.uid+');"><img src="images/bianji1.png"></a></td>' +
                     '</tr>';
             }
             //渲染数据
@@ -148,7 +148,7 @@
             },"json");
         }
     }
-    function editUser(uid) {
+    function findId(uid) {
         console.log(uid);
         if(confirm("编辑？")){
             location.href="editUser.html?uid="+uid;
