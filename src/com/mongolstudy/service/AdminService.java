@@ -64,7 +64,7 @@ public class AdminService {
      * @param strPageSize
      * @return
      */
-    public static String pageQuery(String strPageNum, String strPageSize) {
+    public static String pageQuery(String strPageNum, String strPageSize,String cname) {
         AdminDao adminDao=new AdminDao();
         //分页数据查询处理
         //计算startIndex
@@ -72,7 +72,7 @@ public class AdminService {
         int pageSize = Integer.parseInt(strPageSize);
         int startIndex = (pageNum - 1) * pageSize;
         //调用dao层处理分页数据查询
-        List<User> list =adminDao.pageQuery(startIndex, pageSize);
+        List<User> list =adminDao.pageQuery(startIndex, pageSize,cname);
         //分页条计算
         int totalRecord = adminDao.queryTotalRecord();
         int totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
@@ -99,4 +99,8 @@ public class AdminService {
         return s;
     }
 
+    public User search(String cname) {
+        User user =adminDao.queryByUsername(cname);
+        return user ;
+    }
 }

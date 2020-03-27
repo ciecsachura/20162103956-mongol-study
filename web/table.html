@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" xmlns:name="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>admin</title>
@@ -16,16 +16,8 @@
 <main>
     <!--搜索区域开始-->
     <div class="search">
-        <form>
-            <label>
-                <select size="1">
-                    <option value="1" selected="selected">username</option>
-                    <option value="2">tel</option>
-                </select>
-            </label>
-            <input type="text" placeholder="请输入要搜索的内容" />
-            <button>search</button>
-        </form>
+            <input type="text" placeholder="请输入要搜索的内容" id="cnameQuery" name="cnameQuery" style="margin-right: -20px " />
+            <button type="submit" onclick="getPageData(1,6)" style="margin-right: -20px ">search</button>
         <button class="jiajian" onclick="addUser();">+</button>
         <!--<button class="jiajian" onclick="deleteUser();">-</button>-->
     </div>
@@ -85,9 +77,11 @@
     });
     //点击分页按钮，动态查询对应页码数据
     function getPageData(pageNum,pageSize) {
+        var cname = document.getElementById("cnameQuery").value
+
         // alert("页码为："+pageNum+";每页查询："+pageSize);
         //动态 data ajax提交的数据 1.字符串"name=value" 2,对象 {name:"张三"}
-        $.get("/userPageQueryServlet",{pageNum:pageNum,pageSize:pageSize},function (result) {
+        $.get("/userPageQueryServlet",{pageNum:pageNum,pageSize:pageSize,cname:cname},function (result) {
             console.log(JSON.stringify(result));
             //渲染数据 遍历数组 拼接字符串
             var userHtml ='';
@@ -154,6 +148,25 @@
             location.href="editUser.html?uid="+uid;
         }
     }
+   /* function query(username) {
+        console.log(username);
+        $.get("/searchServlet",{username:username},function (result) {
+            var aHtml ='';
+            var user=result.user;
+            aHtml+='<tr>' +
+                '   <td><input name="" type="checkbox" value="" checked="checked"/></td>\n' +
+                '    <td name="uid" >'+user.uid+'</td>\n' +
+                '    <td>'+user.username+'</td>\n' +
+                '    <td>'+user.admin+'</td>\n' +
+                '    <td>'+user.grade+'</td>\n' +
+                '    <td>'+user.telephone+'</td>\n' +
+                '    <td><a onclick =\"deleteUser('+u.uid+');\">-</a><a onclick=\"findId('+u.uid+');"><img src="images/bianji1.png"></a></td>' +
+                '</tr>';
+//渲染数据
+            $("#userList").html(aHtml);
+        },"json");
+
+    }*/
 </script>
 
 </html>

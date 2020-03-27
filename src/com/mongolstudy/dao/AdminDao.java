@@ -4,6 +4,8 @@ import com.mongolstudy.utils.C3p0Utils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.ArrayList;
 import java.util.List;
 public class AdminDao {
     private JdbcTemplate jdbcTemplate = new JdbcTemplate(C3p0Utils.getDataSource());
@@ -28,9 +30,16 @@ public class AdminDao {
      * @param pageSize
      * @return
      */
-    public List<User> pageQuery(int startIndex, int pageSize) {
-        String sql = "SELECT * FROM tab_user LIMIT ?,?";
-        List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), startIndex, pageSize);
+    public List<User> pageQuery(int startIndex, int pageSize,String cname) {
+        String sql = "";
+        List<User> userList = new ArrayList<>();
+        if (cname != null && !cname.equals("")){
+             sql = "SELECT * FROM tab_user WHERE username LIKE CONCAT('%',?,'%') OR telephone = ? LIMIT ?,?";
+             userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class),cname,cname, startIndex, pageSize);
+        }else {
+             sql = "SELECT * FROM tab_user LIMIT ?,?";
+             userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), startIndex, pageSize);
+        }
         return userList;
     }
 
@@ -121,5 +130,16 @@ public class AdminDao {
                 user.getUid()
         );
     return update;
+    }
+
+    public User queryByUsername(String cname) {
+        String sql="SELECT * FROM tab_user WHERE username=? or telephone= ?";
+        User user = new User();
+        try {
+            user=jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(User.class),cname,cname);
+            return user;
+        } catch (DataAccessException e) {
+            return  null;
+        }
     }
 }

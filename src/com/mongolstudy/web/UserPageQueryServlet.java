@@ -17,9 +17,10 @@ public class UserPageQueryServlet extends HttpServlet {
         //1、接收请求数据
         String strPageNum = request.getParameter("pageNum");
         String strPageSize = request.getParameter("pageSize");
+        String cname = request.getParameter("cname");
         //2、处理数据：调用service处理分页查询业务
         AdminService adminService = new AdminService();
-        String pageUserJson = AdminService.pageQuery(strPageNum, strPageSize);
+        String pageUserJson = AdminService.pageQuery(strPageNum, strPageSize,cname);
         //3、响应数据:pageRouteJson
         response.getWriter().print(pageUserJson);
     }
