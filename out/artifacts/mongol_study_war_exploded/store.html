@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>store</title>
+<link rel="stylesheet" type="text/css" href="css/store.css" />
+
+	<script src="js/jquery-3.3.1.js"></script>
+
+
+</head>
+
+<body>
+<!--头部开始-->
+<div class="large-box">
+<header>
+    <div id="indexpic" onclick="show_indexpicM()">
+    
+   <a href="index.html"><img src="images/sytb.png" /></a>
+    </div>
+    <div id="menu" onclick="show_menuM()">
+   
+    <a href="login.html"><img src="images/txl3.png"/></a>
+    </div>
+</header>
+<!--头部结束-->
+   <!-- 搜索框开始-->
+<!--<div class="store-box">
+<div class="search">
+                    <input name="" id="keywords" type="text" placeholder="Номын нэр буюу номын төрөл зүйлийг бичээрэй" class="search_input" autocomplete="off">
+                    <a href="" class="search-button">Хайх</a>
+                </div>-->
+    <!-- 搜索框结束-->
+<!-- item盒子开始-->
+ <ul id="storeList">
+
+
+<!--<li class="item" id="item">
+	<a target="_blank">
+		<div class="img-Container">
+
+			<span class="imgLink"><img src="'+route.rimage+'" /></span>
+		</div>
+		<div class="info">
+			<p class="price">
+			<span class="pricedetail">
+			"¥"
+			<strong>'+route.price+'</strong>
+			</span>
+            <span class="car"><img src="images/gouwuche.png" /></span>
+            </p>
+			<span class="title" title="蒙古秘史">'+route.rname+'</span>
+		</div>
+	</a>
+</li>
+
+
+<li class="item">
+	<a target="_blank">
+		<div class="img-Container">
+
+			<span class="imgLink"><img src="images/huhesudur.png" /></span>
+		</div>
+		<div class="info">
+			<p class="price">
+			<span class="pricedetail">
+			"¥"
+			<strong> 150.00</strong>
+			</span>
+            <span class="car"><img src="images/gouwuche.png" /></span>
+			</p>
+			<span class="title" title="蒙古秘史"></span>
+		</div>
+	</a>
+</li>
+
+<li class="item">
+	<a target="_blank">
+		<div class="img-Container">
+
+			<span class="imgLink"><img src="images/store1.png" /></span>
+		</div>
+		<div class="info">
+			<p class="price">
+			<span class="pricedetail">
+			"¥"
+			<strong> 150.00</strong>
+			</span>
+            <span class="car"><img src="images/gouwuche.png" /></span>
+			</p>
+			<span class="title" title="蒙古秘史"></span>
+		</div>
+	</a>
+</li>
+
+<li class="item">
+	<a target="_blank">
+		<div class="img-Container">
+
+			<span class="imgLink"><img src="images/store2.png" /></span>
+		</div>
+		<div class="info">
+			<p class="price">
+			<span class="pricedetail">
+			"¥"
+			<strong> 150.00</strong>
+			</span>
+            <span class="car"><img src="images/gouwuche.png" /></span>
+			</p>
+			<span class="title" title="蒙古秘史"></span>
+		</div>
+	</a>
+</li>
+
+<li class="item">
+	<a target="_blank">
+		<div class="img-Container">
+
+			<span class="imgLink"><img src="images/store2.png" /></span>
+		</div>
+		<div class="info">
+			<p class="price">
+			<span class="pricedetail">
+			"¥"
+			<strong> 150.00</strong>
+			</span>
+            <span class="car"><img src="images/gouwuche.png" /></span>
+			</p>
+			<span class="title" title="蒙古秘史"></span>
+		</div>
+	</a>
+
+</li>
+
+<li class="item">
+	<a target="_blank">
+		<div class="img-Container">
+
+			<span class="imgLink"><img src="images/store2.png" /></span>
+		</div>
+		<div class="info">
+			<p class="price">
+			<span class="pricedetail">
+			"¥"
+			<strong> 150.00</strong>
+			</span>
+            <span class="car"><img src="images/gouwuche.png" /></span>
+			</p>
+			<span class="title" title="蒙古秘史"></span>
+		</div>
+	</a>
+</li>-->
+
+    </ul>
+<div class="pageNum">	  
+						共<span class="page_num_inf" >10</span>页
+                        <ul id="pageLine">
+                            <!--<li class="threeword"><a href="">首页</a></li>
+                            <li ><a href="#"><<</a></li>
+                            <li><a href="#" onclick="getPageData(1,6);">1</a></li>
+                            <li><a href="#" onclick="getPageData(2,6);">2</a></li>
+                            <li><a href="#" onclick="getPageData(3,6);">3</a></li>
+                            <li><a href="#" onclick="getPageData(4,6);">4</a></li>
+                            <li><a href="#" onclick="getPageData(5,6);">5</a></li>
+                            <li><a href="#" onclick="getPageData(6,6);">6</a></li>
+                            <li><a href="#" onclick="getPageData(7,6);">7</a></li>
+                            <li><a href="#" onclick="getPageData(8,6);">8</a></li>
+                            <li><a href="#" onclick="getPageData(9,6);">9</a></li>
+                            <li><a href="#" onclick="getPageData(10,6);">10</a></li>
+                            <li><a href="javascript:;">>></a></li>
+                            <li class="threeword"><a href="javascript:;">末页</a></li>-->
+                        </ul>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="js/jq-paginator.js"></script>
+
+</div>
+</div>
+</body>
+
+<script>
+    //页面加载完成后 默认查询第一页数据
+    $(function () {
+        getPageData(1,6);
+    });
+  /*  $(function () {
+        //发送请求，查询所有商品种类信息
+        $.get("/categoryQueryServlet",function (result) {
+            console.log(result);
+        } ,"json");
+    });*/
+    //点击分页按钮，动态查询对应页码数据
+    function getPageData(pageNum,pageSize) {
+        // alert("页码为："+pageNum+";每页查询："+pageSize);
+        //动态 data ajax提交的数据 1.字符串"name=value" 2,对象 {name:"张三"}
+		$.get("/storePageQueryServlet",{pageNum:pageNum,pageSize:pageSize},function (result) {
+			console.log(JSON.stringify(result));
+            //渲染数据 遍历数组 拼接字符串
+            var storeHtml ='';
+            var list = result.list;
+            debugger;
+            var store ;
+            for( store of list){
+                storeHtml+='<li class="item" id="item">' +
+                    '<a target="_blank">' +
+                    '<div class="img-Container">' +
+                    '<span class="imgLink"><img src="'+store.simage+'"/></span>' +
+                    '</div>' +
+                    '<div class="info">' +
+                    '<p class="price">' +
+                    '<span class="pricedetail">' +
+                    '¥' +
+                    '<strong>'+store.price+ '</strong>' +
+                    '</span>' +
+                    '<span class="car"><img src="images/gouwuche.png" /></span>' +
+                    '</p>' +
+                    '<span class="title" title="蒙古秘史">'+store.rname+'</span>' +
+                    '</div>' +
+                    '</a>' +
+                    '</li>';
+
+            }
+            //渲染数据
+            $("#storeList").html(storeHtml);
+
+            // 使用插件动态生成按钮 jq-paginator ctrl+alt+l 美化代码
+            var totalPage = result.totalPage;
+            $('#pageLine').jqPaginator({
+                totalPages:totalPage,
+                visiblePages: 10,
+                currentPage: pageNum,
+                activeClass:"curPage",
+                prev: '<li style="width: 50px;" class="prev"><a href="javascript:;">《</a></li>',  //这里需要点击事件，以及参数，继续调用你的getPageData方法
+                first: '<li class="first"><a href="javascript:;">首页</a></li>',
+                last: '<li class="last"><a href="javascript:;">末页</a></li>',
+                page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+                next: '<li style="width: 50px;" class="next"><a href="javascript:;">》</a></li>',
+                onPageChange: function (num, type) {
+                    //判断 type="change" 动态查询对应页码数的数据
+                    if(type == 'change'){
+                        getPageData(num,6);
+                    }
+
+                }
+            });
+
+        },"json");
+
+
+
+    }
+</script>
+</html>

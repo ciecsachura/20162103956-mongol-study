@@ -1,0 +1,143 @@
+@charset "utf-8";
+/* CSS Document */
+element.style{ 
+
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+a{ text-decoration:none; color:#333;}
+li{ list-style:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+.clearfix:after{ content:""; display:block; clear:both;}
+.wrap{  margin:0 auto;}
+
+.outside{
+   border:1px;
+   bordercolor:#000033;
+   height:971px;
+   background-color:RGB(2,102,133);
+   display:block;
+   
+   
+   
+	}
+header{
+    height: 1041px;
+	width:5%;
+    background-color:RGB(2,102,133);
+    border-right: 1px solid black;
+    border-bottom: none;
+	float:right;
+	position:relative;
+	bottom:1041px;
+
+}
+header h1{
+	
+	}
+header span{
+	font-size:20px;
+	display:block;
+	color:#CC0;
+	text-align:center;
+	position:relative;
+	left:-27px;
+	}
+header img{
+	width:100%;
+	margin:auto 0;
+}
+.login-resist li{width: 100px;height: 30px;background: black;text-align: center;}
+.login-resist a{text-decoration: none;color:#fff;margin-bottom: 10px;}
+.login-resist li{float: left;
+}
+
+#C{clear: both;
+    }
+#C a{color:white;padding: 8px;display: none;}
+#li1:hover a{cursor: pointer; display:block; }
+main{
+	height:940px;
+	width:1508px;
+	width:95%;
+	background-color:RGB(2,102,133);
+	float:left;
+	overflow: hidden;
+	}
+main h1{
+
+	writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+	-moz-writing-mode: vertical-lr;
+    -o-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+	width:165px;
+	height:60px;
+	color:#CC0;	
+	text-align:center;
+	position:relative;
+	left:45%;
+	padding-top:30px;
+	margin-bottom:30px;	}
+main span{
+	font-size:20px;
+	display:block;
+	color:#CC0;
+	text-align:center;
+	position:relative;
+	left:5%;
+	}
+
+clear {
+    height: 1px;
+    line-height: 1px;
+    overflow: hidden;
+    clear: both;
+    font-size: 0;
+    margin-top: -1px;
+}
+
+nav{
+   margin:40px auto;
+	width:50%;
+	background-color:RGB(2,102,133);
+   }
+nav li{
+	height:200px;
+	float:left;
+	margin:auto 30px;
+	background-color:RGB(2,102,133);
+
+	
+	}
+nav li img{margin:10px;}
+nav li a{
+	display: block;
+	width: auto;
+	height: 87px;
+	color: #CC0;
+
+	}
+nav li h2{writing-mode:tb-rl;}
+nav li span{ }
+footer{
+	height:70px;
+	
+	width:100%;
+	border-top:#CCC solid 1px;
+	background-color:RGB(2,102,133);
+	text-align:center;
+	font-size:14px;
+	color:#FFF;
+	line-height:26px;
+	padding-top:30px;
+	margin-top:0;
+	float:left;
+
+	}
+footer p{
+	margin:auto 0;
+	}

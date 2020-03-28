@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin: 0;
+	padding: 0;
+}
+li{ list-style:none;}
+div{display:block;}
+body{background-color:RGB(0,102,133); }
+.large-box{ 
+background-color:rgb(2,102,133);
+width:100%;}
+.store-box {
+    width: 1500px;;
+	height:940px;
+    overflow: hidden;
+	display:inline-block;
+	float:left;
+	/*border:#333 1px solid;*/
+	background-color:rgb(2,102,133);
+	position:relative;
+	right:-115px;
+}
+header{
+	width:80px;
+	height:940px;
+	background-color:RGB(2,102,133);
+	float:left;
+	border-right:#000 1px solid;
+	
+	}
+header img{margin:0 auto;}
+header,.store-box{display:inline-block;}
+
+
+
+#indexpic{
+	display: inline-block;
+    height: 70px;
+    width: 70px;
+    margin: 3px;
+    background:url("images/sytb.png") no-repeat;
+	}
+#menu{
+	display: inline-block;
+    height: 70px;
+    width: 70px;
+    margin: 3px;
+    background:url("images/txl3.png") no-repeat;
+    position:relative;
+	top:500px;
+	}
+.search{
+	width:1000px;
+	height:30px;
+	margin:0 auto;
+	}
+.search input{
+	width:500px;
+	height:30px;
+	}
+.search-button{
+	color:white;
+	font-size:18px;}
+
+.item {
+    float: left;
+    margin: 12px 18px 16px 16px;
+    width: 350px;
+	height:350px;
+    border: 10px solid #eee;
+	background-color:RGB(2,102,133);
+}
+.item a {
+    color:black;
+}
+.Mname{
+	float:left;
+	width:30px;
+	height:350px;
+	padding:0 auto;
+	}
+.Mname #Mname{
+	font-family:"Menk BudunTig";
+	font-size:24px;
+	color:rgb(2,102,133);
+	line-height:24px;
+	text-align:center;
+	writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+	-moz-writing-mode: vertical-lr;
+    -o-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;}
+
+.store-box .item .img-Container {
+    width: 400px;
+    height: 370px;
+    overflow: hidden;
+	
+}
+
+.imgLink img{
+	width:350px;
+	height:300px;
+	
+	}
+.car{
+	width:5px;
+	height:5px;
+	position:relative;
+	top:-66px;
+	right:-284px;
+	}
+.title{
+	color:white;
+	position:relative;
+	top:-105px;
+	left: 73px;
+	}
+.pricedetail{
+	position:relative;
+	top:-84px;
+	right:-9px;
+	}
+.page_num_inf {
+  color:white;
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+.page_one .xinxi .left .page_num_inf span {
+  color: #ff4848;
+}
+.pageNum {
+    width: 1500px;
+	height:100px;
+    overflow: hidden;
+}
+
+
+.pageNum ul li {
+  width: 40px;
+  height: 50px;
+  float: left;
+  border: 1px solid #eee;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 40px;
+}
+.pageNum ul li.curPage {
+    background-color: #ffc900;
+}
+.pageNum ul li a {
+  width: 100%;
+  height: 100%;
+  color: #000;
+  font-size: 17px;
+}
+.pageNum ul .threeword {
+  width: 75px;
+}

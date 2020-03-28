@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mongolstudy</title>
+  <link rel="stylesheet" href="css/Untitled-2.css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <script src="js/Untitled-3.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+  <script>
+    window.onload = function () {
+      // 轮播选项
+      const options = {
+          id: 'lb-1',              // 轮播盒ID
+          speed: 600,              // 轮播速度(ms)
+          delay: 3000,             // 轮播延迟(ms)
+          direction: 'left',       // 图片滑动方向
+          moniterKeyEvent: true,   // 是否监听键盘事件
+          moniterTouchEvent: true  // 是否监听屏幕滑动事件
+      };
+      const lb = new Lb(options);
+      lb.start();
+    }
+  </script>
+</head>
+
+<body>
+<!--最外部盒子-->
+<div class="outside" >
+<!--header开始-->
+
+ <!--header结束-->
+ <!--main顶端开始-->
+ <main>
+    <h1>ᠮᠤᠩᠭᠤᠯ   ᠬᠡᠯᠡ   ᠰᠤᠷᠤᠯᠴᠠᠬᠤ   ᠰᠦᠯᠵᠢᠶ᠎ᠡ</h1>
+    <span>Монгол хэл суралцах сүлжээ</span>
+ <!--main顶端结束--> 
+  <!--滚动轮播结构开始-->
+  <div class="lb-box" id="lb-1">
+    <!-- 轮播内容 -->
+    <div class="lb-content">
+      <div class="lb-item active">
+        <a href="#">
+          <img src="images/news12.png" alt="picture loss">
+          <span>Description 1</span>
+        </a>
+      </div>
+      <div class="lb-item">
+        <a href="#">
+          <img src="images/news2.png" alt="picture loss">
+          <span>Description 2</span>
+        </a>
+      </div>
+      <div class="lb-item">
+        <a href="#">
+          <img src="images/news3.png" alt="picture loss">
+          <span>Description 3</span>
+        </a>
+      </div>
+      <div class="lb-item">
+        <a href="#">
+          <img src="images/news4.png" alt="picture loss">
+          <span>Description 4</span>
+        </a>
+      </div>   
+    </div>
+    <!-- 轮播标志 -->
+    <ol class="lb-sign">
+      <li class="active">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ol>
+    <!-- 轮播控件 -->
+    <div class="lb-ctrl left">＜</div>
+    <div class="lb-ctrl right">＞</div>
+  </div>
+  <!--滚动轮播结构结束-->
+  <!--导航栏开始-->
+ <nav>
+	<ul>
+    	<li>
+        	<a href="#">
+            <img src="images/daohang11.png">
+            	<!--<h2>ᠰᠤᠷᠤᠯᠴᠠᠬᠤ   ᠬᠡᠯᠪᠡᠷᠢ</h2>-->
+           <!-- <span>Суралцах хэлбэр</span>-->
+            </a>
+        </li>
+        <li>
+        	<a href="table.html">
+            <img src="images/daohang22.png">
+            	<!--<h2>ᠳᠠᠪᠲᠠᠬᠤ  <br>  ᠬᠡᠯᠪᠡᠷᠢ</h2>-->
+                <!--<span>Давтах хэлбэр</span>-->
+            </a>
+        </li>
+        <li>
+        	<a href="/store.html">
+            <img src="images/daohang333.png">
+            	<!--<h2>ᠬᠤᠳᠠᠯᠳᠤᠭ᠎ᠠ </h2>-->
+                <!--<span>Худалдаа</span>-->
+            </a>
+        </li>
+        <li>
+        	<a href="/contact.html">
+            <img src="images/daohang444.png">
+            	<!--<h2>ᠮᠠᠨ    <br>   ᠤ   <br>  ᠲᠤᠬᠠᠢ </h2>-->
+                <!--<span>Манай тухай</span>-->
+            </a>
+        </li>
+    </ul>
+</nav>
+<!--导航栏结束-->
+ </main>
+ <!--main结束-->
+<!--footer开始--> 
+<footer>
+	<p>Copyright © 2003-2019 68design.net, All Rights Reserved　 蒙ICP备07002644号-1<br>蒙·网警1523010015号</p>
+</footer>
+<!--footer结束-->
+
+<header>
+<div class="login-resist" >
+	<ul>
+	<li id='li1'><a href="zhuxingtu2.html"><img src="images/txltb2.png" /></a>
+        <span id="loginUserName" style="font-size: 16px; position: relative; left: -2px;" onclick="tuichu();">user</span>
+        <a  href="/loginOutServlet" id="tuichu" onclick="">tuichu</a>
+	<div id="C" class="D">
+	<a href="enroll.html"><br>Данслах</a>
+	<a href="login.html"><br>Нэвтрэх</a>
+</div>
+    </li>
+    </ul>
+</div>
+</header>
+</div>
+</body>
+<script>
+    //页面加载完成获取登录用户的数据
+    $(function () {
+        alert("页面加载完成");
+        $("#tuichu").hide();
+        $.get("getLoginUserServlet",function (result) {
+            //解析相应数据
+            console.log(result);
+            if(result.flag){
+                //用户已登录 1、把用户名显示到页面中
+                var userName =result.data;
+                $("#loginUserName").html(""+userName);
+                $("#tuichu").show();
+                $("#C").hide();
+            }else{
+
+
+            }
+        },"json");
+
+    });
+
+
+</script>
+</html>

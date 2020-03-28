@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>一个很漂亮实用的日历</title>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+//创建一个数组,用于存放每个月的天数
+function montharr(m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11)
+{
+this[0] = m0;
+this[1] = m1;
+this[2] = m2;
+this[3] = m3;
+this[4] = m4;
+this[5] = m5;
+this[6] = m6;
+this[7] = m7;
+this[8] = m8;
+this[9] = m9;
+this[10] = m10;
+this[11] = m11;
+}
+//实现月历
+function calendar() {
+var monthNames = "JanFebMarAprMayJunJulAugSepOctNovDec";
+var today = new Date();
+var thisDay;
+var monthDays = new montharr(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+year = today.getYear() +1900;
+thisDay = today.getDate();
+if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) monthDays[1] = 29;
+nDays = monthDays[today.getMonth()];
+firstDay = today;
+firstDay.setDate(1);
+testMe = firstDay.getDate();
+if (testMe == 2) firstDay.setDate(0);
+startDay = firstDay.getDay();
+document.write("<div id='rili' style='position:absolute;width:140px;left:300px;top:100px;'>")
+document.write("<TABLE width='217' BORDER='0' CELLSPACING='0' CELLPADDING='2' BGCOLOR='#0080FF'>")
+document.write("<TR><TD><table border='0' cellspacing='1' cellpadding='2' bgcolor='Silver'>");
+document.write("<TR><th colspan='7' bgcolor='#C8E3FF'>");
+var dayNames = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+var monthNames = new Array("1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月");
+var now = new Date();
+document.writeln("<FONT STYLE='font-size:9pt;Color:#330099'>" + "公元 " + now.getYear() + "年" + monthNames[now.getMonth()] + " " + now.getDate() + "日 " + dayNames[now.getDay()] + "</FONT>");
+document.writeln("</TH></TR><TR><TH BGCOLOR='#0080FF'><FONT STYLE='font-size:9pt;Color:White'>日</FONT></TH>");
+document.writeln("<th bgcolor='#0080FF'><FONT STYLE='font-size:9pt;Color:White'>一</FONT></TH>");
+document.writeln("<TH BGCOLOR='#0080FF'><FONT STYLE='font-size:9pt;Color:White'>二</FONT></TH>");
+document.writeln("<TH BGCOLOR='#0080FF'><FONT STYLE='font-size:9pt;Color:White'>三</FONT></TH>");
+document.writeln("<TH BGCOLOR='#0080FF'><FONT STYLE='font-size:9pt;Color:White'>四</FONT></TH>");
+document.writeln("<TH BGCOLOR='#0080FF'><FONT STYLE='font-size:9pt;Color:White'>五</FONT></TH>");
+document.writeln("<TH BGCOLOR='#0080FF'><FONT STYLE='font-size:9pt;Color:White'>六</FONT></TH>");
+document.writeln("</TR><TR>");
+column = 0;
+for (i=0; i<startDay; i++) {
+document.writeln("\n<TD><FONT STYLE='font-size:9pt'> </FONT></TD>");
+column++;
+}
+for (i=1; i<=nDays; i++) {
+if (i == thisDay) {
+document.writeln("</TD><TD ALIGN='CENTER' BGCOLOR='#FF8040'><FONT STYLE='font-size:9pt;Color:#ffffff'><B>")
+}
+else {
+document.writeln("</TD><TD BGCOLOR='#FFFFFF' ALIGN='CENTER'><FONT STYLE='font-size:9pt;font-family:Arial;font-weight:bold;Color:#330066'>");
+}
+document.writeln(i);
+if (i == thisDay) document.writeln("</FONT></TD>")
+column++;
+if (column == 7) {
+document.writeln("<TR>");
+column = 0;
+}
+}
+document.writeln("<TR><TD COLSPAN='7' ALIGN='CENTER' VALIGN='TOP' BGCOLOR='#0080FF'>")
+document.writeln("<FORM NAME='clock' onSubmit='0'><FONT STYLE='font-size:9pt;Color:#ffffff'>")
+document.writeln("现在时间:<INPUT TYPE='Text' NAME='face' ALIGN='TOP'></FONT></FORM></TD></TR></TABLE>")
+document.writeln("</TD></TR></TABLE></div>");
+}
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+var timerID = null;
+var timerRunning = false;
+function stopclock (){
+if(timerRunning)
+clearTimeout(timerID);
+timerRunning = false;}
+//显示当前时间
+function showtime () {
+var now = new Date();
+var hours = now.getHours();
+var minutes = now.getMinutes();
+var seconds = now.getSeconds()
+var timeValue = " " + ((hours >12) ? hours -12 :hours)
+timeValue += ((minutes < 10) ? ":0" : ":") + minutes
+timeValue += ((seconds < 10) ? ":0" : ":") + seconds
+timeValue += (hours >= 12) ? " 下午 " : " 上午 "
+document.clock.face.value = timeValue;
+timerID = setTimeout("showtime()",1000);//设置超时,使时间动态显示
+timerRunning = true;}
+function startclock () {
+stopclock();
+showtime();}
+</SCRIPT>
+</head>
+<body onLoad="startclock(); timerONE=window.setTimeout">
+<script language="JavaScript" type="text/javascript">
+<!--
+calendar();
+//-->
+</script>
+</body>
+</html>
+2
+<html>
+<head>
+<title>Cool日历</title>
+</head><BODY background="../images/bg.gif">
+<!--将以下代码加入HTML的<Body></Body>之间-->
+<script language="JavaScript">
+<!-- Hide this script from old browsers --
+function greeting()
+{
+var today = new Date();
+var hrs = today.getHours();
+document.writeln("<CENTER>");
+document.write("Good ");
+if (hrs < 6)
+document.write("(Early) Morning");
+else if (hrs < 12)
+document.write("Morning");
+else if (hrs <= 18)
+document.write("Afternoon");
+else
+document.write("Evening");
+document.write("!");
+document.write("当前时间是:");
+dayStr = today.toLocaleString();
+document.write(dayStr);
+document.writeln("</CENTER>");
+}
+function montharr(m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11)
+{
+this[0] = m0;
+this[1] = m1;
+this[2] = m2;
+this[3] = m3;
+this[4] = m4;
+this[5] = m5;
+this[6] = m6;
+this[7] = m7;
+this[8] = m8;
+this[9] = m9;
+this[10] = m10;
+this[11] = m11;
+}
+function calendar()
+{
+var today = new Date();
+var thisDay;
+var monthDays = new montharr(31, 28, 31, 30, 31, 30, 31, 31, 30,
+31, 30, 31);
+year = today.getYear();
+if (year<2000)
+year=year+1900;
+thisDay = today.getDate();
+if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+monthDays[1] = 29;
+nDays = monthDays[today.getMonth()];
+firstDay = today;
+firstDay.setDate(1); // works fine for most systems
+testMe = firstDay.getDate();
+if (testMe == 2)
+firstDay.setDate(0);
+startDay = firstDay.getDay();
+document.writeln("<CENTER>");
+document.write("<TABLE BORDER bgcolor=moccasin>");
+document.write("<TR><TH COLSPAN=7>");
+document.write(year+'年');
+document.write(today.getMonth()+1+'月');
+document.write("<TR><TH>日<TH>一<TH>二<TH>三<TH>四<TH>五<TH>六");
+document.write("<TR>");
+column = 0;
+for (i=0; i<startDay; i++)
+{
+document.write("<TD>");
+column++;
+}
+for (i=1; i<=nDays; i++)
+{
+document.write("<TD>");
+if (i == thisDay)
+document.write("<FONT COLOR=\"red\">")
+document.write(i);
+if (i == thisDay)
+document.write("</FONT>")
+column++;
+if (column == 7)
+{
+document.write("<TR>");
+column = 0;
+}
+}
+document.write("</TABLE>");
+document.writeln("</CENTER>");
+}
+greeting();
+document.write("<br>");
+calendar();
+document.write("");
+// -- End Hiding Here -->
+</script>
+</body></html>
+3
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>在线记事的日历</title>
+</head>
+<body>
+<script LANGUAGE="JavaScript">
+<!-- hk--><!-- khjk-->
+<!-- ghjk--><!-- hjk-->as is.
+var caution = false
+function setCookie(name, value, expires, path, domain, secure) {
+var curCookie = name + "=" + escape(value) +
+((expires) ? "; expires=" + expires.toGMTString() : "") +
+((path) ? "; path=" + path : "") +
+((domain) ? "; domain=" + domain : "") +
+((secure) ? "; secure" : "")
+if (!caution || (name + "=" + escape(value)).length <= 4000)
+document.cookie = curCookie
+else
+if (confirm("Cookie exceeds 4KB and will be cut!"))
+document.cookie = curCookie
+}
+function getCookie(name) {
+var prefix = name + "="
+var cookieStartIndex = document.cookie.indexOf(prefix)
+if (cookieStartIndex == -1)
+return null
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+if (cookieEndIndex == -1)
+cookieEndIndex = document.cookie.length
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+}
+function deleteCookie(name, path, domain) {
+if (getCookie(name)) {
+document.cookie = name + "=" +
+((path) ? "; path=" + path : "") +
+((domain) ? "; domain=" + domain : "") +
+"; expires=Thu, 01-Jan-70 00:00:01 GMT"
+}
+}
+function fixDate(date) {
+var base = new Date(0)
+var skew = base.getTime()
+if (skew > 0)
+date.setTime(date.getTime() - skew)
+}
+function initCookie(monthName) {
+var text = ""
+for (var i = 1; i <= 31; ++i) {
+text += "^" + i + "^"
+}
+var now = new Date()
+fixDate(now)
+now.setTime(now.getTime() + 1000 * 60 * 60 * 24 * 31)
+setCookie(monthName + "Calendar", text, now)
+}
+function getSpecificReminder(num, monthName) {
+var prefix = "^" + num + "^"
+var totalCookie = getCookie(monthName + "Calendar")
+var startIndex = totalCookie.indexOf(prefix, 0)
+var startData = totalCookie.indexOf("^", startIndex + 1) + 1
+if (num == 31)
+var endData = totalCookie.length
+else
+var endData = totalCookie.indexOf("^", startData)
+return totalCookie.substring(startData, endData)
+}
+function setSpecificReminder(num, monthName, newValue) {
+var prefix = "^" + num + "^"
+var totalCookie = getCookie(monthName + "Calendar")
+var startIndex = totalCookie.indexOf(prefix, 0)
+var startData = totalCookie.indexOf("^", startIndex + 1) + 1
+if (num == 31)
+var endData = totalCookie.length
+else
+var endData = totalCookie.indexOf("^", startData)
+var now = new Date()
+fixDate(now)
+now.setTime(now.getTime() + 1000 * 60 * 60 * 24 * 31)
+setCookie(monthName + "Calendar", totalCookie.substring(0, startData) + newValue + totalCookie.substring(endData, totalCookie.length), now)
+}
+function getInput(num, monthName) {
+if (!getCookie(monthName + "Calendar"))
+initCookie(monthName)
+var newValue = prompt("Enter reminder for current date:", getSpecificReminder(num, monthName))
+if (newValue)
+setSpecificReminder(num, monthName, newValue)
+}
+function getTime() {
+var now = new Date()
+var hour = now.getHours()
+var minute = now.getMinutes()
+now = null
+var ampm = ""
+if (hour >= 12) {
+hour -= 12
+ampm = "PM"
+} else
+ampm = "AM"
+hour = (hour == 0) ? 12 : hour
+if (minute < 10)
+minute = "0" + minute
+return hour + ":" + minute + " " + ampm
+}
+function leapYear(year) {
+if (year % 4 == 0)
+return true
+return false
+}
+function getDays(month, year) {
+var ar = new Array(12)
+ar[0] = 31
+ar[1] = (leapYear(year)) ? 29 : 28 // February
+ar[2] = 31
+ar[3] = 30
+ar[4] = 31
+ar[5] = 30
+ar[6] = 31
+ar[7] = 31
+ar[8] = 30
+ar[9] = 31
+ar[10] = 30
+ar[11] = 31
+return ar[month]
+}
+function getMonthName(month) {
+var ar = new Array(12)
+ar[0] = "一月"
+ar[1] = "二月"
+ar[2] = "三月"
+ar[3] = "四月"
+ar[4] = "五月"
+ar[5] = "六月"
+ar[6] = "七月"
+ar[7] = "八月"
+ar[8] = "九月"
+ar[9] = "十月"
+ar[10] = "十一月"
+ar[11] = "十二月"
+return ar[month]
+}
+function setCal() {
+var now = new Date()
+var year = now.getYear()
+var month = now.getMonth()
+var monthName = getMonthName(month)
+var date = now.getDate()
+now = null
+var firstDayInstance = new Date(year, month, 1)
+var firstDay = firstDayInstance.getDay()
+firstDayInstance = null
+var days = getDays(month, year)
+drawCal(firstDay + 1, days, date, monthName, year)
+}
+function drawCal(firstDay, lastDate, date, monthName, year) {
+var headerHeight = 50
+var border = 2
+var cellspacing = 4
+var headerColor = "midnightblue"
+var headerSize = "+3"
+var colWidth = 60
+var dayCellHeight = 25
+var dayColor = "darkblue"
+var cellHeight = 40
+var todayColor = "red"
+var timeColor = "purple"
+var text = ""
+text += '<CENTER>'
+text += '<TABLE BORDER=' + border + ' CELLSPACING=' + cellspacing + '>'
+text += '<TH COLSPAN=7 HEIGHT=' + headerHeight + '>'
+text += '<FONT COLOR="' + headerColor + '" SIZE=' + headerSize + '>'
+text += monthName + ' ' + year
+text += '</FONT>'
+text += '</TH>'
+var openCol = '<TD WIDTH=' + colWidth + ' HEIGHT=' + dayCellHeight + '>'
+openCol += '<FONT COLOR="' + dayColor + '">'
+var closeCol = '</FONT></TD>'
+var weekDay = new Array(7)
+weekDay[0] = "Sun"
+weekDay[1] = "Mon"
+weekDay[2] = "Tues"
+weekDay[3] = "Wed"
+weekDay[4] = "Thu"
+weekDay[5] = "Fri"
+weekDay[6] = "Sat"
+text += '<TR ALIGN="center" VALIGN="center">'
+for (var dayNum = 0; dayNum < 7; ++dayNum) {
+text += openCol + weekDay[dayNum] + closeCol
+}
+text += '</TR>'
+var digit = 1
+var curCell = 1
+for (var row = 1; row <= Math.ceil((lastDate + firstDay - 1) / 7); ++row) {
+text += '<TR ALIGN="right" VALIGN="top">'
+for (var col = 1; col <= 7; ++col) {
+if (digit > lastDate)
+break
+if (curCell < firstDay) {
+text += '<TD></TD>';
+curCell++
+} else {
+if (digit == date) {
+text += '<TD HEIGHT=' + cellHeight + '>'
+text += '<FONT COLOR="' + todayColor + '">'
+text += '<A HREF="javascript:getInput(' + digit + ', \'' + monthName + '\')" onMouseOver="window.status = \'Store or retrieve data for ' + monthName + ' ' + digit + '\'; return true"><FONT COLOR="' + todayColor + '">' + digit + '</FONT></A>'
+text += '<BR>'
+text += '<FONT COLOR="' + timeColor + '" SIZE=2>'
+text += '<CENTER>' + getTime() + '</CENTER>'
+text += '</FONT>'
+text += '</TD>'
+} else
+text += '<TD HEIGHT=' + cellHeight + '><A HREF="javascript:getInput(' + digit + ', \'' + monthName + '\')" onMouseOver="window.status = \'Store or retrieve data for ' + monthName + ' ' + digit + '\'; return true">' + digit + '</A></TD>'
+digit++
+}
+}
+text += '</TR>'
+}
+text += '</TABLE>'
+text += '</CENTER>'
+document.write(text)
+}
+setCal()
+</script>
+</body>
+</html>

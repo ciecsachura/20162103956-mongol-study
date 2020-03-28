@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>login</title>
+<link rel="stylesheet" href="css/login.css" type="text/css" />
+    <script src="js/jquery-3.3.1.js"></script>
+
+</head>
+
+<body>
+<!--头部开始-->
+<div class="large-box">
+<header>
+    <div id="indexpic" onclick="show_indexpicM()">
+    
+   <a href="index.html"><img src="images/sytb.png" /></a>
+    </div>
+    <div id="menu" onclick="show_menuM()">
+   
+    <a href="enroll.html"><img src="images/txl3.png"/></a>
+    </div>
+</header>
+<!--头部结束-->
+
+<!--登录窗口开始-->
+
+
+<form id="loginForm" action="" accept-charset="UTF-8" onsubmit="return false"  class="login-form" tabindex="-1" method="post">
+      <input type="hidden" name="action" value="login"/>
+        <div class="form-login">
+            <div class="form-field-username">
+             <label>ᠬᠡᠷᠡᠭ᠍ᠯᠡᠭ᠍ᠴᠢ ᠵᠢᠨ ᠨᠡᠷ᠎ᠡ᠄<br />Хэрэглэгчийн нэр<br /></label>
+            <input id="login-username" type="text" name="username" minlength="3" maxlength="254" required="required" placeholder=""  />
+            <!--<span class ="tip tip-input" id="login-tel-desc">ᠳᠠᠨᠭᠰᠠᠯᠠᠭᠰᠠᠨ ᠨᠡᠷ᠎ᠡДансалсан нэр<br /></span>-->
+            </div>
+            <div class="form-field-password-password">
+            <label>ᠨᠢᠭᠤᠴᠠ ᠨᠤᠮᠸᠷ᠄<br />Нууц  номер<br /></label>
+            <input id="login-password" type="password" name="password"  minlength="2" maxlength="75" required />
+            </div>
+            <div class="form-field-checkbox-remember">
+            <input id="login-remember" type="checkbox" name="remember" class=" checkbox" value="false" />
+            <label for="login-remember">ᠨᠢᠭᠤᠴᠠ ᠨᠤᠮᠸᠷ ᠴᠡᠭᠡᠵᠢᠯᠡᠬᠦНууц номер цээжлэх</label>
+            </div>
+<button type="submit"  id="loginBt" onclick="login();" >ᠨᠡᠪᠲᠡᠷᠡᠬᠦ<br />Нэвтрэх</button>
+
+<!--<button type="button" class="forget-password field-link">ᠨᠢᠭᠤᠴᠠ ᠨᠤᠮᠸᠷ ᠢᠡᠨ ᠮᠠᠷᠲᠠᠪᠠ<br />Нууц номер ин мартав</button>-->
+
+        </div>
+</form>
+    <div id="errorMsg" class="alert alert-danger"></div>
+</div>
+<!--登录窗口结束-->
+</body>
+<script>
+
+   function login() {
+
+        ////表单序列化技术：form表单中的数据序列化成字符串
+        var formData = $("#loginForm").serialize();
+        //提交数据
+        $.post("/loginServlet", formData, function(result){
+            console.log(result);
+            if (result.flag == true) {
+                //登陆成功，
+                        location.href="index.html";
+            } else {
+                //登陆失败
+                var errorMsg = result.errorMsg;
+                $("#errorMsg").html(errorMsg);
+
+            }
+
+        },"json");
+    }
+</script>
+</html>

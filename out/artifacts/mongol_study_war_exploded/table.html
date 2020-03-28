@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:name="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>admin</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/table.css" />
+
+</head>
+
+<body>
+<!--引入头部-->
+<div id="adminTop"></div>
+<div id="adminNav"></div>
+<script type="text/javascript" src="js/include.js"></script>
+<main>
+    <!--搜索区域开始-->
+    <div class="search">
+            <input type="text" placeholder="请输入要搜索的内容" id="cnameQuery" name="cnameQuery" style="margin-right: -20px " />
+            <button type="submit" onclick="getPageData(1,6)" style="margin-right: -20px ">search</button>
+        <button class="jiajian" onclick="addUser();">+</button>
+        <!--<button class="jiajian" onclick="deleteUser();">-</button>-->
+    </div>
+    <!--搜索区域结束-->
+<table border="1" class="tablelist">
+	<thead>
+    <tr>
+    <th class="checkbox"><input name="" type="checkbox" value="" checked=""/></th>
+    <th name="id">id<i class="sort"></i></th>
+    <th>username</th>
+    <th>guanliyuan</th>
+    <th>garade</th>
+    <th>tel</th>
+    <th>caozuo</th>
+    </tr>
+	</thead>
+    <tbody id="userList">
+    <!--<tr >-->
+    <!--<td><input name="" type="checkbox" value="" checked="checked"/></td>
+    <td>'+tab.uid+'</td>
+    <td>'+tab.usename+'</td>
+    <td>'+tab.admin+'</td>
+    <td>'+tab.sex+'</td>
+    <td>'+grade+'</td>
+    <td>'+tab.tel+'</td>
+    <td><a><img src="images/bianji1.png"></a></td>-->
+    <!--</tr>-->
+    </tbody>
+</table>
+    <!--页码-->
+    <div class="pageNum">
+        共<span class="page_num_inf" ></span>页
+        <ul id="pageLine">
+            <!--<li class="threeword"><a href="">首页</a></li>
+            <li ><a href="#"><<</a></li>
+            <li><a href="#" onclick="getPageData(1,6);">1</a></li>
+            <li><a href="#" onclick="getPageData(2,6);">2</a></li>
+            <li><a href="#" onclick="getPageData(3,6);">3</a></li>
+            <li><a href="#" onclick="getPageData(4,6);">4</a></li>
+            <li><a href="#" onclick="getPageData(5,6);">5</a></li>
+            <li><a href="#" onclick="getPageData(6,6);">6</a></li>
+            <li><a href="#" onclick="getPageData(7,6);">7</a></li>
+            <li><a href="#" onclick="getPageData(8,6);">8</a></li>
+            <li><a href="#" onclick="getPageData(9,6);">9</a></li>
+            <li><a href="#" onclick="getPageData(10,6);">10</a></li>
+            <li><a href="javascript:;">>></a></li>
+            <li class="threeword"><a href="javascript:;">末页</a></li>-->
+        </ul>
+    </div>
+
+</main>
+<script src="js/jq-paginator.js"></script>
+</body>
+<script>
+    $(function () {
+        getPageData(1,6);
+    });
+    //点击分页按钮，动态查询对应页码数据
+    function getPageData(pageNum,pageSize) {
+        var cname = document.getElementById("cnameQuery").value
+
+        // alert("页码为："+pageNum+";每页查询："+pageSize);
+        //动态 data ajax提交的数据 1.字符串"name=value" 2,对象 {name:"张三"}
+        $.get("/userPageQueryServlet",{pageNum:pageNum,pageSize:pageSize,cname:cname},function (result) {
+            console.log(JSON.stringify(result));
+            //渲染数据 遍历数组 拼接字符串
+            var userHtml ='';
+            var list = result.list;
+            for(var u of list){
+                userHtml+='<tr>' +
+                    '   <td><input name="" type="checkbox" value="" checked="checked"/></td>\n' +
+                    '    <td name="uid" >'+u.uid+'</td>\n' +
+                    '    <td>'+u.username+'</td>\n' +
+                    '    <td>'+u.admin+'</td>\n' +
+                    '    <td>'+u.grade+'</td>\n' +
+                    '    <td>'+u.telephone+'</td>\n' +
+                    '    <td><a onclick =\"deleteUser('+u.uid+');\">-</a><a onclick=\"findId('+u.uid+');"><img src="images/bianji1.png"></a></td>' +
+                    '</tr>';
+            }
+            //渲染数据
+            $("#userList").html(userHtml);
+            // 使用插件动态生成按钮 jq-paginator ctrl+alt+l 美化代码
+            var totalPage = result.totalPage;
+            $('#pageLine').jqPaginator({
+                totalPages:totalPage,
+                visiblePages: 10,
+                currentPage: pageNum,
+                activeClass:"curPage",
+                prev: '<li style="width: 50px;" class="prev"><a href="javascript:;">《</a></li>',  //这里需要点击事件，以及参数，继续调用你的getPageData方法
+                first: '<li class="first"><a href="javascript:;">首页</a></li>',
+                last: '<li class="last"><a href="javascript:;">末页</a></li>',
+                page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+                next: '<li style="width: 50px;" class="next"><a href="javascript:;">》</a></li>',
+                onPageChange: function (num, type) {
+                    //判断 type="change" 动态查询对应页码数的数据
+                    if(type == 'change'){
+                        getPageData(num,6);
+                    }
+                }
+            });
+
+        },"json");
+    }
+    function addUser() {
+    if (confirm("添加？")){
+        location.href="addUser.html";
+    }
+    }
+    function deleteUser(uid) {
+        console.log("++++"+uid);
+        if (confirm("删除？")){
+            /*location.href="${pageContext.request.contextPath}/deleteUserServlet?id="+uid;*/
+            $.post("/deleteUserServlet",{uid:uid},function (result) {
+                console.log("++++"+result);
+             if (result){
+                 alert("删除成功")
+                 //页面重新加载
+                 location.reload()
+             }else {
+                 alert("删除失败")
+             }
+            },"json");
+        }
+    }
+    function findId(uid) {
+        console.log(uid);
+        if(confirm("编辑？")){
+            location.href="editUser.html?uid="+uid;
+        }
+    }
+   /* function query(username) {
+        console.log(username);
+        $.get("/searchServlet",{username:username},function (result) {
+            var aHtml ='';
+            var user=result.user;
+            aHtml+='<tr>' +
+                '   <td><input name="" type="checkbox" value="" checked="checked"/></td>\n' +
+                '    <td name="uid" >'+user.uid+'</td>\n' +
+                '    <td>'+user.username+'</td>\n' +
+                '    <td>'+user.admin+'</td>\n' +
+                '    <td>'+user.grade+'</td>\n' +
+                '    <td>'+user.telephone+'</td>\n' +
+                '    <td><a onclick =\"deleteUser('+u.uid+');\">-</a><a onclick=\"findId('+u.uid+');"><img src="images/bianji1.png"></a></td>' +
+                '</tr>';
+//渲染数据
+            $("#userList").html(aHtml);
+        },"json");
+
+    }*/
+</script>
+
+</html>
