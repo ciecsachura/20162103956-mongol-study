@@ -101,7 +101,7 @@ public class AdminDao {
         try {
             user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class),uid);
         } catch (DataAccessException e) {
-
+            return null;
         }
         return user;
     }
@@ -121,7 +121,7 @@ public class AdminDao {
 
     public int updateUser(User user) {
         String sql = "update tab_user set username =?, password= ?,admin =? ,grade =? ,telephone = ? where uid = ?";
-       int update = jdbcTemplate.update(sql,
+        int update = jdbcTemplate.update(sql,
                 user.getUsername(),
                 user.getPassword(),
                 user.getAdmin(),
@@ -129,7 +129,7 @@ public class AdminDao {
                 user.getTelephone(),
                 user.getUid()
         );
-    return update;
+        return update;
     }
 
     public User queryByUsername(String cname) {

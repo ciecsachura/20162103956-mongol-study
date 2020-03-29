@@ -7,8 +7,12 @@
     <script src="js/jquery-3.3.1.js"></script>
 </head>
 <body>
+<!--引入头部-->
+<div id="adminTop"></div>
+<div id="adminNav"></div>
+<script type="text/javascript" src="js/include.js"></script>
 <main>
-<form id="addUserForm">
+<form id="addUserForm" class="addUserForm">
     <input type="hidden" name="action" value="">
     <input type="hidden" name="status" value="1">
     <input type="hidden" name="code" value="1">
@@ -57,7 +61,7 @@
     							<td class="td_left"> 
     							</td>
     							<td class="td_right check"> 
-                                    <button  type="submit" class="" onclick="addUser();" id="submitBtn" >√</button>
+                                    <button  type="submit" class="addSubmit" onclick="addUser();" id="submitBtn" >√</button>
 									<span id="msg" style="color: red;"></span>
     							</td>
     	</tr>

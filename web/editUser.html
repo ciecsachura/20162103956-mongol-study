@@ -7,9 +7,13 @@
     <script src="js/jquery-3.3.1.js"></script>
 </head>
 <body>
+<!--引入头部-->
+<div id="adminTop"></div>
+<div id="adminNav"></div>
+<script type="text/javascript" src="js/include.js"></script>
 <main>
-    <form id="editUserForm" method="post">
-        <input type="hidden" name="uid" value="">
+    <form id="editUserForm" class="addUserForm" method="post">
+        <input type="hidden" name="uid" id="uid" value="">
         <input type="hidden" name="status" value="1">
         <input type="hidden" name="code" value="1">
         <table style="margin-top: 25px;">
@@ -59,7 +63,7 @@
                 <td class="td_left">
                 </td>
                 <td class="td_right check">
-                    <button  type="submit" class="" onclick="editUser();" id="submitBtn" >√</button>
+                    <button  type="submit" class="addSubmit" onclick="editUser();" id="submitBtn" >√</button>
                     <span id="msg" style="color: red;"></span>
                 </td>
             </tr>
@@ -77,11 +81,11 @@
     });
     // document.getElementById("admin").value="hahaha";
     function findId(id) {
-        console.log("++++"+id);
+        console.log(""+id);
             $.post("/findUserServlet",{uid:id},function (result) {
                 console.log("++++"+result);
                 if (result){
-                    //document.getElementById("uid").value=result.user.uid;
+                    document.getElementById("uid").value=result.user.uid;
                     document.getElementById("username").value=result.user.username;
                     document.getElementById("password").value=result.user.password;
                     document.getElementById("grade").value=result.user.grade;

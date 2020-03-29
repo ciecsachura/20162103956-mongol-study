@@ -1,14 +1,16 @@
 @charset "utf-8";
 /* CSS Document */
 main{
-	margin:0 auto;
+
 	}
 .addUserForm{
-	width:358px;
-	float: left;
 	padding-top:10px;
 	box-sizing: border-box;
 	font-size: 14px;
+
+	position: relative;
+	top: 20px;
+	left: 600px;
 }
 .addUserForm .td_left{
 	width: 65px;
@@ -41,4 +43,11 @@ main{
 	padding-left: 118px;
 	font-size: 14px;
     cursor: pointer;
+}
+.addUserForm .addSubmit{
+	color: rgb(2,102,133);
+	width: 55px;
+	height: 30px;
+	position: relative;
+	left: 100px;
 }

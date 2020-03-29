@@ -22,9 +22,9 @@ public class UpdateUserServlet extends HttpServlet {
         request.getParameter("uid");
         User user = new User();
         try {
-            BeanUtils.populate(user,map);
+            BeanUtils.populate(user, map);
             AdminService adminService = new AdminService();
-            updateJson=adminService.updateUser(user);
+            updateJson = adminService.updateUser(user);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,6 +34,6 @@ public class UpdateUserServlet extends HttpServlet {
             updateJson = JSON.toJSONString(resultInfo);
         }
         response.getWriter().print(updateJson);
-    }
 
+    }
 }

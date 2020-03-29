@@ -22,20 +22,14 @@ table td{
 .search{
     height:80px;
     position:relative;
-    top:-50px;
+    top:14px;
+    left: 942px;
     border-radius:50px;
-    padding-top:20px;
+    padding:0 auto;
 }
-.search form{
-    float:right;
-}
-.search form select{
-    width:120px;
-    height:35px;
-    font-size:14px;
-    border-color:rgb(91,155,213);
-}
-.search form input{
+
+
+.search input{
     width:450px;
     height:30px;
     background:#FFF;
@@ -43,7 +37,7 @@ table td{
     border:rgb(91,155,213) solid 2px;
     border-radius:29px;
 }
-.search form button{
+.search button{
     width:135px;
     height:35px;
     background-color:rgb(91,155,213);
@@ -51,23 +45,23 @@ table td{
     border-radius:18px;
     color:#fff;
     font-size:16px;
-    float:right;
+
 
 }
-.jiajian{
-    width: 54px;
-    height: 34px;
-    float: right;
-    position:relative;
-    top:88px;
-    right: 891px;
 
-}
 /*搜索框结束*/
 /*main样式开始*/
 main{
     height:940px;
     margin:0 auto;
+}
+.jia{
+    width: 30px;
+    height: 30px;
+    color: rgb(2,102,133);
+    position: relative;
+    top: -11px;
+    left: 400px;
 }
 table{
     margin:0 auto;
@@ -83,12 +77,15 @@ table td{
     height:85px;
 }
 .page_one .xinxi .left .page_num_inf span {
-    color: #ff4848;
+    color: white;
 }
 .pageNum {
     width: 1500px;
     height:100px;
     overflow: hidden;
+    position: relative;
+    top: 10px;
+    left: 320px;
 }
 
 
@@ -96,13 +93,13 @@ table td{
     width: 40px;
     height: 50px;
     float: left;
-    border: 1px solid #eee;
+    border: 1px solid black;
     margin-right: 10px;
     text-align: center;
     line-height: 40px;
 }
 .pageNum ul li.curPage {
-    background-color: #ffc900;
+    background-color:rgb(2,102,133);
 }
 .pageNum ul li a {
     width: 100%;
