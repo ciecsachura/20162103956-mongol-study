@@ -27,8 +27,6 @@ public class EnrollServlet extends HttpServlet {
         String registerJson;
         try {
             //1、接收请求数据： Alt+Enter
-
-
             String password = request.getParameter("password");
             String repeatpassword = request.getParameter("repeatpassword");
 

@@ -25,6 +25,17 @@ public class C3p0Utils {
     public static DataSource getDataSource() {
         return ds;
     }
+    public static class ReadDataSource {
+        public static DataSource dataSource;
+
+        static {
+            dataSource = new ComboPooledDataSource();
+        }
+
+        public static DataSource getDataSource(){
+            return dataSource;
+        }
+    }
 
     /**
      * 创建得到连接对象的方法

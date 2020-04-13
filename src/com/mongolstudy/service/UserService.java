@@ -1,6 +1,7 @@
 package com.mongolstudy.service;
 
 import com.alibaba.fastjson.JSON;
+import com.mongolstudy.bean.Message;
 import com.mongolstudy.bean.ResultInfo;
 import com.mongolstudy.bean.User;
 import com.mongolstudy.dao.UserDao;
@@ -61,6 +62,19 @@ public class UserService {
         //返回查询结果
         return user;
     }
-
-
+    /**
+     * 处理留言
+     */
+    public String message(Message message){
+        ResultInfo resultInfo = new ResultInfo();
+        int addFlag = userDao.addmessage(message);
+        if (addFlag == 0)
+        {
+            resultInfo.setFlag(false);
+        }else{
+            resultInfo.setFlag(true);
+        }
+        String s = JSON.toJSONString(resultInfo);
+        return  s;
+    }
 }

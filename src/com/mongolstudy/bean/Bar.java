@@ -1,6 +1,7 @@
 package com.mongolstudy.bean;
 
 public class Bar {
+	private int tid;
 	private String name;	//服装名称
 	private int num;		//对应件数
 	public String getName() {

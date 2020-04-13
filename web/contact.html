@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>contact</title>
 <link href="css/pages.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-3.3.1.js"></script>
 </head>
 
 <body>
@@ -37,33 +38,33 @@
     </div>
     <div class="message-board">
     	<h2>Үг үлдэх хавтас</h2>
-        <form>
+        <form id="msgboxForm" method="post" onsubmit="return false" accept-charset="UTF-8">
         	<div class="dataArea">
             	<label>Илгээгчийн нэр：</label>
-                <input type="text" />
+                <input name="mname" type="text" required="required"/>
             </div>
             <div class="dataArea">
             	<label>Гарчиг：</label>
-                <input type="text" />
+                <input name="title" type="text" required="required"/>
             </div>
             <div class="dataArea">
             	<label>Холбоо барих утас：</label>
-                <input type="text" />
+                <input  name="telephone" type="text" required="required"/>
             </div>
             <div class="dataArea">
             	<label>E-mail：</label>
-                <input type="text" />
+                <input name="email" type="text" required="required"/>
             </div>
             <div class="dataArea">
             	<label>Агуулга：</label>
-                <textarea></textarea>
+                <textarea name="message" required="required"></textarea>
             </div>
-            <button>Илгээх</button>
+            <button  onclick="msg();">Илгээх</button>
+            <a onclick="location='index.html';return false" href="#"><button>Буцах</button></a>
         </form>
     </div>
 </div>
 <!--主体部分结束-->
-
 <!--底部版权结构开始-->
 <footer>
 	<p>Copyright © 2003-2019 68design.net, All Rights Reserved　 蒙ICP备07002644号-1<br>蒙·网警1523010015号</p>
@@ -71,4 +72,24 @@
 <!--底部版权结构结束-->
 
 </body>
+<script>
+    function msg(){
+        var formData = $("#msgboxForm").serialize();
+        $.post("msgServlet",formData,function (result) {
+            //处理响应数据
+            console.log(result);
+            if(result.flag==true){
+                alert("√");
+            }else{
+                //注册失败
+                var errorMsg = result.errorMsg;
+                $("#msg").html(errorMsg);
+                alert("××");
+            }
+        },"json");
+    }
+
+
+
+</script>
 </html>

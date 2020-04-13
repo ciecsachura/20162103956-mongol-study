@@ -1,5 +1,6 @@
 package com.mongolstudy.dao;
 
+import com.mongolstudy.bean.Message;
 import com.mongolstudy.bean.User;
 import com.mongolstudy.utils.C3p0Utils;
 import com.mongolstudy.utils.UuidUtil;
@@ -67,6 +68,18 @@ public class UserDao {
         } catch (DataAccessException e) {
             return  null;
         }
+    }
+
+    public int addmessage(Message message) {
+        String sql ="INSERT INTO messagebox (mname,title,telephone,email,message)VALUES(?,?,?,?,?)";
+        int update=jdbcTemplate.update(sql,
+                message.getMname(),
+                message.getTitle(),
+                message.getTelephone(),
+                message.getEmail(),
+                message.getMessage()
+                );
+        return update;
     }
 }
 

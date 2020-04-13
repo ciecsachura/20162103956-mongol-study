@@ -3,10 +3,6 @@
  * @author Mxsyx (zsimline@163.com)
  * @version 1.0.0
  */
-
-
-
-
 class Lb {
   constructor(options) {
     this.lbBox = document.getElementById(options.id);
@@ -19,10 +15,8 @@ class Lb {
     this.curIndex = 0;
     // 轮播盒内图片数量
     this.numItems = this.lbItems.length;
-
     // 是否可以滑动
     this.status = true;
-
     // 轮播速度
     this.speed = options.speed || 600;
     // 等待延时

@@ -10,12 +10,12 @@
 <div align="center">
     <div id="main" style="width: 1000px;height:700px"></div>
 </div>
-<script src="${pageContext.request.contextPath}/source/echarts/myTheme.js"></script>
+<script src="js/echarts.min.js"></script>
 <script type="text/javascript">
     // 另外说一下带主题加载，就是这样的，注意“e_macarons”必须是myTheme.js(上面引入的自定义主题js文件,echarts中也附带了不少主题js文件)中函数的名字
     var myChart = echarts.init(document.getElementById('main'),e_macarons);
     option = {
-        title: {},
+    title: {},
     tooltip : {},
     legend: {},
     toolbox: {},
@@ -51,7 +51,6 @@
                 it.data = json[i].data;
                 Series.push(it);
             }
-
             option.xAxis[0].data = jsons.xcontent;
             option.legend.data = legends;
             option.series = Series; // 设置图表

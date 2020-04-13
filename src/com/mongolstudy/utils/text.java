@@ -13,7 +13,7 @@ public class text {
                     goodsDao.queryAllGoods()) {
                 System.out.println(goods);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

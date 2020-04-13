@@ -5,6 +5,7 @@
     <title>第一个 ECharts 实例</title>
     <!-- 引入 echarts.js -->
     <script src="js/echarts.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
@@ -15,8 +16,12 @@
 
     // 指定图表的配置项和数据
     var option = {
-        legend: {},
-        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        tooltip: {
+            show: true
+        },
         dataset: {
             // 提供一份数据。
             source: [
@@ -27,16 +32,25 @@
                 ['Walnut Brownie', 72.4, 53.9, 39.1]
             ]
         },
-        // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
-        xAxis: {type: 'category'},
+        //声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
+        xAxis: [
+            {
+                type : 'category',
+                data : [
+
+    ]
+    }
+    ],
         // 声明一个 Y 轴，数值轴。
-        yAxis: {},
+        yAxis: { type : 'value'},
         // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
-        series: [
-            {type: 'bar'},
-            {type: 'bar'},
-            {type: 'bar'}
-        ]
+    series : [
+        {
+            name:'销量',
+            type:'bar',
+            data
+        }
+    ]
     };
 
     // 使用刚指定的配置项和数据显示图表。
