@@ -19,6 +19,7 @@ public class DeleteUserServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         int uid=Integer.parseInt(req.getParameter("uid"));
         ResultInfo resultInfo = new ResultInfo();
         //调用adminservice方法删除

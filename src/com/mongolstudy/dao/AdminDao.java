@@ -1,4 +1,5 @@
 package com.mongolstudy.dao;
+import com.mongolstudy.bean.Message;
 import com.mongolstudy.bean.User;
 import com.mongolstudy.utils.C3p0Utils;
 import org.springframework.dao.DataAccessException;
@@ -42,7 +43,24 @@ public class AdminDao {
         }
         return userList;
     }
-
+    /**
+     * 分页数据查询 feedback
+     * @param startIndex
+     * @param pageSize
+     * @return
+     */
+    public List<Message> msgpageQuery(int startIndex, int pageSize, String cname) {
+        String sql = "";
+        List<Message> msgList = new ArrayList<>();
+        if (cname != null && !cname.equals("")){
+            sql = "SELECT * FROM messagebox WHERE title LIKE CONCAT('%',?,'%') OR telephone = ? LIMIT ?,?";
+            msgList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Message.class),cname,cname, startIndex, pageSize);
+        }else {
+            sql = "SELECT * FROM messagebox LIMIT ?,?";
+            msgList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Message.class), startIndex, pageSize);
+        }
+        return msgList;
+    }
     /**
      * 查询数据总条数
      * @return
@@ -53,7 +71,16 @@ public class AdminDao {
 
         return  totalRecord;
     }
+    /**
+     * 查询数据总条数
+     * @return
+     */
+    public int msgqueryTotalRecord() {
+        String sql = "SELECT COUNT(*) FROM messagebox ";
+        Integer totalRecord = jdbcTemplate.queryForObject(sql, Integer.class);//封装成int类型
 
+        return  totalRecord;
+    }
     /**
      * 删除数据
      * @param
@@ -141,5 +168,11 @@ public class AdminDao {
         } catch (DataAccessException e) {
             return  null;
         }
+    }
+
+    public int delete(int mid) {
+        String sql="DELETE FROM messagebox WHERE mid=? ";
+        return jdbcTemplate.update(sql,mid
+        );
     }
 }

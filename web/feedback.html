@@ -3,16 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>feedback</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/table.css" />
 </head>
 <body>
 <div id="adminTop"></div>
 <div id="adminNav"></div>
 <script type="text/javascript" src="js/include.js"></script>
+<!--搜索区域开始-->
+<div class="search">
+    <input type="text" placeholder="请输入要搜索的内容" id="cnameQuery" name="cnameQuery"  />
+    <button type="submit" onclick="getPageData(1,6)" style="margin-right: -20px ">search</button>
+
+    <!--<button class="jiajian" onclick="deleteUser();">-</button>-->
+</div>
+<!--搜索区域结束-->
 <main>
+    <a class="jia" href="javascript:void(0);" id="delSelected" action="${pageContext.request.contextPath}/delSelectedServlet" method="post">删除选中</a>
+    <button class="jia" onclick="deleteUser('+u.uid+');">-</button>
     <table border="1" class="tablelist">
         <thead>
         <tr>
-            <th class="checkbox"><input name="" type="checkbox" id=firstCb" value="" checked=""/></th>
+            <th class="checkbox"><input type="checkbox" id="firstCb"/></th>
             <th name="id">id<i class="sort"></i></th>
             <th>ᠨᠡᠷ᠎ᠡ</th>
             <th>ᠭᠠᠷᠴᠠᠭ</th>
@@ -21,7 +33,7 @@
             <th>ᠠᠭᠤᠯᠭ᠎ᠠ</th>
         </tr>
         </thead>
-        <tbody id="userList">
+        <tbody id="msgList">
         <!--<tr >-->
         <!--<td><input name="" type="checkbox" value="" checked="checked"/></td>
         <td>'+tab.uid+'</td>
@@ -38,20 +50,7 @@
     <div class="pageNum">
         共<span class="page_num_inf" ></span>页
         <ul id="pageLine">
-            <!--<li class="threeword"><a href="">首页</a></li>
-            <li ><a href="#"><<</a></li>
-            <li><a href="#" onclick="getPageData(1,6);">1</a></li>
-            <li><a href="#" onclick="getPageData(2,6);">2</a></li>
-            <li><a href="#" onclick="getPageData(3,6);">3</a></li>
-            <li><a href="#" onclick="getPageData(4,6);">4</a></li>
-            <li><a href="#" onclick="getPageData(5,6);">5</a></li>
-            <li><a href="#" onclick="getPageData(6,6);">6</a></li>
-            <li><a href="#" onclick="getPageData(7,6);">7</a></li>
-            <li><a href="#" onclick="getPageData(8,6);">8</a></li>
-            <li><a href="#" onclick="getPageData(9,6);">9</a></li>
-            <li><a href="#" onclick="getPageData(10,6);">10</a></li>
-            <li><a href="javascript:;">>></a></li>
-            <li class="threeword"><a href="javascript:;">末页</a></li>-->
+
         </ul>
     </div>
 
@@ -60,53 +59,128 @@
 <script src="js/jq-paginator.js"></script>
 </body>
 <script>
-$(function () {
-getPageData(1,6);
-});
-function getPageData(pageNum,pageSize) {
-var cname = document.getElementById("cnameQuery").value
+    $(function () {
+        getPageData(1,6);
+    });
+    //点击分页按钮，动态查询对应页码数据
+    function getPageData(pageNum,pageSize) {
+        var cname = document.getElementById("cnameQuery").value
 
-// alert("页码为："+pageNum+";每页查询："+pageSize);
-//动态 data ajax提交的数据 1.字符串"name=value" 2,对象 {name:"张三"}
-$.get("/userPageQueryServlet",{pageNum:pageNum,pageSize:pageSize,cname:cname},function (result) {
-console.log(JSON.stringify(result));
-//渲染数据 遍历数组 拼接字符串
-var userHtml ='';
-var list = result.list;
-for(var u of list){
-userHtml+='<tr>' +
-    '   <td><input name="" type="checkbox" value="" checked="checked"/></td>\n' +
-    '    <td name="uid" >'+u.uid+'</td>\n' +
-    '    <td>'+u.username+'</td>\n' +
-    '    <td>'+u.admin+'</td>\n' +
-    '    <td>'+u.grade+'</td>\n' +
-    '    <td>'+u.telephone+'</td>\n' +
-    '    <td><a onclick =\"deleteUser('+u.uid+');\">-</a><a onclick=\"findId('+u.uid+');"><img src="images/bianji1.png"></a></td>' +
-    '</tr>';
-}
-//渲染数据
-$("#userList").html(userHtml);
-// 使用插件动态生成按钮 jq-paginator ctrl+alt+l 美化代码
-var totalPage = result.totalPage;
-$('#pageLine').jqPaginator({
-totalPages:totalPage,
-visiblePages: 10,
-currentPage: pageNum,
-activeClass:"curPage",
-prev: '<li style="width: 50px;" class="prev"><a href="javascript:;">《</a></li>',  //这里需要点击事件，以及参数，继续调用你的getPageData方法
-first: '<li class="first"><a href="javascript:;">首页</a></li>',
-last: '<li class="last"><a href="javascript:;">末页</a></li>',
-page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-next: '<li style="width: 50px;" class="next"><a href="javascript:;">》</a></li>',
-onPageChange: function (num, type) {
-//判断 type="change" 动态查询对应页码数的数据
-if(type == 'change'){
-getPageData(num,6);
-}
-}
-});
+        // alert("页码为："+pageNum+";每页查询："+pageSize);
+        //动态 data ajax提交的数据 1.字符串"name=value" 2,对象 {name:"张三"}
+        $.get("/feedbackServlet",{pageNum:pageNum,pageSize:pageSize,cname:cname},function (result) {
+            console.log(JSON.stringify(result));
+            //渲染数据 遍历数组 拼接字符串
+            var msgHtml ='';
+            var list = result.list;
+            for(var u of list){
+                 msgHtml+='<tr>' +
+                    '   <td><input type="checkbox" name="mid" value="${u.mid}"></td>\n' +
+                    '    <td name="mid" >'+u.mid+'</td>\n' +
+                    '    <td>'+u.mname+'</td>\n' +
+                    '    <td>'+u.title+'</td>\n' +
+                    '    <td>'+u.telephone+'</td>\n' +
+                    '    <td>'+u.email+'</td>\n' +
+                    '    <td>'+u.message+'</td>' +
+                    '</tr>';
+            }
+            //渲染数据
+            $("#msgList").html(msgHtml);
+            // 使用插件动态生成按钮 jq-paginator ctrl+alt+l 美化代码
+            var totalPage = result.totalPage;
+            $('#pageLine').jqPaginator({
+                totalPages:totalPage,
+                visiblePages: 10,
+                currentPage: pageNum,
+                activeClass:"curPage",
+                prev: '<li style="width: 50px;" class="prev"><a href="javascript:;">《</a></li>',  //这里需要点击事件，以及参数，继续调用你的getPageData方法
+                first: '<li class="first"><a href="javascript:;">首页</a></li>',
+                last: '<li class="last"><a href="javascript:;">末页</a></li>',
+                page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+                next: '<li style="width: 50px;" class="next"><a href="javascript:;">》</a></li>',
+                onPageChange: function (num, type) {
+                    //判断 type="change" 动态查询对应页码数的数据
+                    if(type == 'change'){
+                        getPageData(num,6);
+                    }
+                }
+            });
 
-},"json");
-}
+        },"json");
+    }
+
+    /*function deleteMsg(mid) {
+        console.log("++++"+mid);
+        if (confirm("删除？")){
+            /!*location.href="${pageContext.request.contextPath}/deleteUserServlet?id="+uid;*!/
+            $.post("/deleteMsgServlet",{mid:mid},function (result) {
+                console.log("++++"+result);
+                if (result){
+                    alert("删除成功")
+                    //页面重新加载
+                    location.reload()
+                }else {
+                    alert("删除失败")
+                }
+            },"json");
+        }
+    }*/
+   /* function msgDelete() {
+        //2.获取下边列表所有的cb
+        $.get("/deleteMsgServlet", {mid: mid}, function () {
+            if (confirm("您确定要删除选中条目吗？")) {
+                var flag = false;
+                //判断是否有选中条目
+                var cbs = document.getElementsByName("mid");
+                for (var i = 0; i < cbs.length; i++) {
+                    if (cbs[i].checked) {
+                        //有一个条目选中
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag) {//有条目选中
+                    //表单提交
+                    document.getElementById("form").submit();
+                }
+
+            }
+        }, "json");
+    }*/
+    document.getElementById("firstCb").onclick = function () {
+        //2.获取下边列表所有的cb
+        var cbs =document.getElementsByName("mid");
+        //3.遍历
+        for(var i = 0;i<cbs.length;i++){
+            cbs[i].checked = this.checked;
+        }
+    }
+
+    document.getElementById("delSelected").onclick = function () {
+        if (confirm("您确定要删除选中条目吗？")) {
+            var flag = false;
+            //判断是否有选中条目
+            var cbs = document.getElementsByName("mid");
+            for (var i = 0; i < cbs.length; i++) {
+                if (cbs[i].checked) {
+                    //有一个条目选中
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {//有条目选中
+                //表单提交
+               /* document.getElementById("form").submit();*/
+            }
+
+        }
+    }
+
+
+
+
+
+
+
 </script>
 </html>
