@@ -1,6 +1,7 @@
 package com.mongolstudy.dao;
 
 import com.mongolstudy.bean.Goods;
+import com.mongolstudy.bean.User;
 import com.mongolstudy.utils.C3p0Utils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,9 +12,9 @@ import java.util.List;
 
 public class GoodsDao {
     private JdbcTemplate jdbcTemplate = new JdbcTemplate(C3p0Utils.getDataSource());
-    public List<Goods> queryAllGoods(){
-        String sql = "SELECT * FROM goods";
-        List<Goods> goodsList = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Goods.class));
+    public List<User> queryAllGoods(){
+        String sql = "SELECT * FROM tab_user";
+        List<User> goodsList = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(User.class));
         return goodsList;
     }
 }

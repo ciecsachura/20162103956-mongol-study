@@ -30,24 +30,24 @@
         <div class="form-login">
             <div class="form-field-username">
              <label>ᠬᠡᠷᠡᠭ᠍ᠯᠡᠭ᠍ᠴᠢ ᠵᠢᠨ ᠨᠡᠷ᠎ᠡ᠄<br />Хэрэглэгчийн нэр<br /></label>
-            <input id="login-username" type="text" name="username" minlength="3" maxlength="254" required="required" placeholder=""  />
+            <input id="login-username" type="text" name="username"  required="required" placeholder=""  />
             <!--<span class ="tip tip-input" id="login-tel-desc">ᠳᠠᠨᠭᠰᠠᠯᠠᠭᠰᠠᠨ ᠨᠡᠷ᠎ᠡДансалсан нэр<br /></span>-->
             </div>
             <div class="form-field-password-password">
             <label>ᠨᠢᠭᠤᠴᠠ ᠨᠤᠮᠸᠷ᠄<br />Нууц  номер<br /></label>
-            <input id="login-password" type="password" name="password"  minlength="2" maxlength="75" required />
+            <input id="login-password" type="password" name="password"   required />
             </div>
             <div class="form-field-checkbox-remember">
             <input id="login-remember" type="checkbox" name="remember" class=" checkbox" value="false" />
             <label for="login-remember">ᠨᠢᠭᠤᠴᠠ ᠨᠤᠮᠸᠷ ᠴᠡᠭᠡᠵᠢᠯᠡᠬᠦНууц номер цээжлэх</label>
             </div>
 <button type="submit"  id="loginBt" onclick="login();" >ᠨᠡᠪᠲᠡᠷᠡᠬᠦ<br />Нэвтрэх</button>
-
+            <div id="errorMsg" class="alert alert-danger"></div>
 <!--<button type="button" class="forget-password field-link">ᠨᠢᠭᠤᠴᠠ ᠨᠤᠮᠸᠷ ᠢᠡᠨ ᠮᠠᠷᠲᠠᠪᠠ<br />Нууц номер ин мартав</button>-->
 
         </div>
 </form>
-    <div id="errorMsg" class="alert alert-danger"></div>
+
 </div>
 <!--登录窗口结束-->
 </body>

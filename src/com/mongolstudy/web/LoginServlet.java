@@ -39,15 +39,15 @@ public class LoginServlet extends HttpServlet {
         if (loginUser == null) {
             //loginUser中没有查到数据：登录失败
             resultInfo.setFlag(false);
-            resultInfo.setErrorMsg("用户名或密码错误！");
+            resultInfo.setErrorMsg("ᠨᠡᠷ᠎ᠡ ᠪᠤᠶᠤ ᠨᠢᠭᠤᠴᠠ ᠨᠤᠮᠸᠷ ᠪᠤᠷᠤᠭᠤᠳᠠᠵᠠᠢ Нэр буюу нууц номер бурууджээ");
         } else {
             //登录成功:1、设置登录成功的状态；2、服务器内部共享用户数据；HttpSession setAttribute 提取数据
             resultInfo.setFlag(true);
             req.getSession().setAttribute("loginUser", loginUser);
-            if (loginUser.getAdmin().equals(1)){
-                resp.sendRedirect("/table.html");
+            if (loginUser.getAdmin().equals(null)){
+                resp.sendRedirect("/index.html");
             }else{
-
+                resp.sendRedirect("/table.html");
             }
 
         }

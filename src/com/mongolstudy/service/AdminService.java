@@ -34,7 +34,7 @@ public class AdminService {
     }
 
 
-    //改
+    //查找用户
     public String findUserById(int uid) {
         User user = adminDao.queryById(uid);
         Map<String, Object> map = new HashMap<>();
@@ -45,7 +45,25 @@ public class AdminService {
     }
 
 
-    //查
+    /**
+     * 改
+     * @param user
+     * @return
+     */
+    public String updateUser(User user) {
+        //0：添加了0条数据--添加失败    1：添加成功
+        int addFlag = adminDao.updateUser(user);
+        //封装结果
+        ResultInfo resultInfo = new ResultInfo();
+        if (addFlag == 0) {
+            resultInfo.setFlag(false);
+        } else {
+            resultInfo.setFlag(true);
+        }
+        String s = JSON.toJSONString(resultInfo);
+        return s;
+    }
+
 
     /**
      * 查询所有的用户数据
@@ -116,25 +134,16 @@ public class AdminService {
         return s;
     }
 
-    public String updateUser(User user) {
-        //0：添加了0条数据--添加失败    1：添加成功
-        int addFlag = adminDao.updateUser(user);
-        //封装结果
-        ResultInfo resultInfo = new ResultInfo();
-        if (addFlag == 0) {
-            resultInfo.setFlag(false);
-        } else {
-            resultInfo.setFlag(true);
-        }
-        String s = JSON.toJSONString(resultInfo);
-        return s;
-    }
 
     public User search(String cname) {
         User user = adminDao.queryByUsername(cname);
         return user;
     }
 
+    /**
+     * 批量删除
+     * @param ids
+     */
     public void delSelectedUser(String[] ids) {
         if (ids != null && ids.length > 0) {//防止空指针异常
             //1.遍历数组

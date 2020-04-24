@@ -1,14 +1,12 @@
 package com.mongolstudy.dao;
 
 import com.mongolstudy.bean.Message;
+import com.mongolstudy.bean.Studytime;
 import com.mongolstudy.bean.User;
-import com.mongolstudy.utils.C3p0Utils;
-import com.mongolstudy.utils.UuidUtil;
 import com.mongolstudy.utils.C3p0Utils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.incrementer.AbstractDataFieldMaxValueIncrementer;
 
 import java.util.List;
 
@@ -39,16 +37,18 @@ public class UserDao {
      */
     public int addUser(User user) {
         //写SQL：
-        String sql = "INSERT INTO tab_user (username,password,telephone,admin,code) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO tab_user (username,password,telephone,admin,email,code,status,totaltime) VALUES(?,?,?,?,?,?,?,?)";
         //执行SQL：
         int update = jdbcTemplate.update(sql,
                                         user.getUsername(),
                                         user.getPassword(),
                                         user.getTelephone(),
                                         user.getAdmin(),
-                                        user.getCode()
+                                        user.getEmail(),
+                                        user.getCode(),
+                                        user.getStatus(),
+                                        user.getTotaltime()
                                         );
-
         return update;
     }
 
@@ -70,6 +70,11 @@ public class UserDao {
         }
     }
 
+    /**
+     * 用户留言
+     * @param message
+     * @return
+     */
     public int addmessage(Message message) {
         String sql ="INSERT INTO messagebox (mname,title,telephone,email,message)VALUES(?,?,?,?,?)";
         int update=jdbcTemplate.update(sql,
@@ -81,5 +86,21 @@ public class UserDao {
                 );
         return update;
     }
+    /**
+     * 用户学习时间
+     * @return
+     */
+    public List<Studytime> queryOneStudyTime() {
+        String sql = "SELECT * FROM tab_studytime";
+        List<Studytime> studytimeList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Studytime.class));
+        return studytimeList;
+    }
+    /**
+     * 用户学习总时长
+     */
+    /*public List<User> queryTotalTime(){
+        String sql="SELECT totaltime FROM tab_user"
+    }*/
+
 }
 

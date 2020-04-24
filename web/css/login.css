@@ -311,3 +311,13 @@ header,.form-field-username,.form-field-password-password,.form-field-checkbox-r
     -o-writing-mode: vertical-lr;
     -ms-writing-mode: tb-lr;
 }
+#errorMsg{
+	color: red;
+	writing-mode:tb-lr;
+	writing-mode: vertical-lr;
+	-webkit-writing-mode: vertical-lr;
+	-moz-writing-mode: vertical-lr;
+	-o-writing-mode: vertical-lr;
+	-ms-writing-mode: tb-lr;
+
+}

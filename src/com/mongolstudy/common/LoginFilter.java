@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 //浏览器直接请求资源时
-@WebFilter(value = "/*",dispatcherTypes = DispatcherType.REQUEST)//拦截路径,拦截方式request
+@WebFilter(value = "/userPageQueryServlet",dispatcherTypes = DispatcherType.REQUEST)//拦截路径,拦截方式request
 public class LoginFilter implements Filter {
     /**
      * 服务器关闭后，销毁filter对象，如果服务器正常关闭，会执行destroy方法，只执行一次，用于释放资源
@@ -31,33 +31,37 @@ public class LoginFilter implements Filter {
         //强制转换
         HttpServletRequest request = (HttpServletRequest) req;
         //1.获取资源请求路径
-        String uri =request.getRequestURI();
+        String uri = request.getRequestURI();
         //2.是否包含登录相关路径,要注意排除css/js/图片/验证码等资源
-        if (uri.contains("/loginServlet")||uri.contains("/getLoginUserServlet")||uri.contains("/enrollServlet")||uri.contains("/css/")||uri.contains("/js/") || uri.contains("/")){
+        if (uri.contains("/loginServlet") || uri.contains("/getLoginUserServlet") || uri.contains("/enrollServlet") || uri.contains("/css/") || uri.contains("/js/") || uri.contains("/")) {
             //包含，用于想登陆，放行
             chain.doFilter(req, resp);
-        }else{
+        } else {
             //不包含，验证用户会否登录
             //3.从session 获取user
             Object loginUser = request.getSession().getAttribute("loginUser");
-            if (loginUser!=null){
+            Object admin = null;
+            if (loginUser != null) {
                 //登录了,放行
-                chain.doFilter(req, resp);
-                System.out.println("用户登陆了");
+                if (admin.equals(1)) {
+                    chain.doFilter(req, resp);
+                    request.getRequestDispatcher("/table.html").forward(request, resp);
+                    System.out.println("用户登陆了");
+                } else {
+                    chain.doFilter(req, resp);
+                }
 
 
-            }else{
+            } else {
                 //没登录，跳转登录页面
-                request.setAttribute("login_msg","您尚未登录");
+                request.setAttribute("login_msg", "您尚未登录");
                 //request.getRequestDispatcher("/table.html").forward(request,resp);
                 System.out.println("用户未登录");
             }
-
+            //对response对象的响应消息进行增强
+            System.out.println("loginfileter回来了");
 
         }
-        //对response对象的响应消息进行增强
-        System.out.println("loginfileter回来了");
-
     }
 
     /**

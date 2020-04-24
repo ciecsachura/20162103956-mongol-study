@@ -18,18 +18,7 @@ import java.util.Map;
  */
 public class UserService {
     UserDao userDao = new UserDao();
-    /**
-     * 查询所有的用户数据
-     *
-     * @return
-     */
-    public String queryAll() {
-        //查询数据：调用dao层查询数据
-        List<User> userList = userDao.queryAll();
-        //userList  ===>  JSON String
-        String s = JSON.toJSONString(userList);
-        return s;
-    }
+
     /**
      * 处理注册业务的方法
      *
@@ -49,6 +38,7 @@ public class UserService {
         String s = JSON.toJSONString(resultInfo);
         return s;
     }
+
     /**
      * 处理用户登录业务
      *
@@ -62,19 +52,27 @@ public class UserService {
         //返回查询结果
         return user;
     }
+
     /**
      * 处理留言
      */
-    public String message(Message message){
+    public String message(Message message) {
         ResultInfo resultInfo = new ResultInfo();
         int addFlag = userDao.addmessage(message);
-        if (addFlag == 0)
-        {
+        if (addFlag == 0) {
             resultInfo.setFlag(false);
-        }else{
+        } else {
             resultInfo.setFlag(true);
         }
         String s = JSON.toJSONString(resultInfo);
-        return  s;
+        return s;
     }
+
+   /* public static String queryAll() {
+        //查询数据：调用dao层查询数据
+        List<studytime> studytimeList = userDao.queryStudyTime();
+        //userList  ===>  JSON String
+        String s = JSON.toJSONString(studytimeList);
+        return s;
+    }*/
 }

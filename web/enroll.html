@@ -39,7 +39,12 @@
               </label>
                 <input type="tel" name="telephone" required/>
             </div>
-            
+            <div class="email">
+            <label>ᠰᠢᠦᠳᠠᠨ ᠬᠠᠶᠢᠷᠴᠠᠭ ᠄
+                <br />Шуудан хайрцаг<br />
+            </label>
+            <input type="text" name="email" required/>
+            </div>
             <div class=" password">
             	<label>ᠨᠢᠭᠤᠴᠠ ᠨᠣᠮᠸᠷ᠄ <br />
 Нууц  номер <br /></label>
@@ -49,8 +54,10 @@
             	<label>ᠨᠢᠭᠤᠴᠠ ᠨᠣᠮᠸᠷ ᠢᠡᠨ ᠨᠤᠲᠠᠯᠠᠬᠤ:<br />  Нууц номер ин нотлох<br /></label>
                 <input type="password" name="repeatpassword" required/>
             </div>
+            <input type="hidden" name="status" value="0"/>
             <input type="hidden" name="admin" value="0"/>
             <input type="hidden" name="code" value="0"/>
+            <input type="hidden" name="totaltime" value="0"/>
             <button onclick="enroll();"> ᠳᠠᠩᠰᠠᠯᠠᠬᠤ Данслах<br /></button>
             <span id="msg" style="color: red;" ></span>
     </div>

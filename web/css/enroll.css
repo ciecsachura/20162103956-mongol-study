@@ -32,7 +32,7 @@ header,.form-enroll{display:inline-block;}
 	top:500px;
 	}
 .form-enroll{ 
-	width:700px;
+	width:1000px;
 	height:940px;
 
 	display:inline-block;
@@ -101,7 +101,7 @@ form button{
         /* Internet Explorer */
         filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
-header,.enroll,.username,.tel,.password,.repeatpassword{
+header,.enroll,.username,.tel,.password,.repeatpassword,.email{
 	display:inline-block;
 	vertical-align:top;
 	writing-mode:tb-lr;
@@ -111,7 +111,7 @@ header,.enroll,.username,.tel,.password,.repeatpassword{
     -o-writing-mode: vertical-lr;
     -ms-writing-mode: tb-lr;
 	}
-.username,.tel,.password,.repeatpassword{
+.username,.tel,.password,.repeatpassword,.email{
 	height:940px;
 	width:100px;
 	margin-right:30px;
@@ -134,3 +134,15 @@ header,.enroll,.username,.tel,.password,.repeatpassword{
 	-o-writing-mode: vertical-lr;
 	-ms-writing-mode: tb-lr;
 	}
+#msg{
+	position: absolute;
+	top: 70px;
+	left: 919px;
+	font-size: 22px;
+	writing-mode:tb-lr;
+	writing-mode: vertical-lr;
+	-webkit-writing-mode: vertical-lr;
+	-moz-writing-mode: vertical-lr;
+	-o-writing-mode: vertical-lr;
+	-ms-writing-mode: tb-lr;
+}

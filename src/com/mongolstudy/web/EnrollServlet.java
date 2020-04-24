@@ -31,7 +31,7 @@ public class EnrollServlet extends HttpServlet {
             String repeatpassword = request.getParameter("repeatpassword");
 
             if (!password.equals(repeatpassword)){
-                throw new Exception("前后密码不一致");
+                throw new Exception("ᠡᠮᠦᠨ᠎ᠡ ᠬᠤᠢᠢᠨ᠎ᠠ ᠨᠢᠭᠤᠴᠠ ᠨᠤᠮᠸᠷ ᠠᠳᠠᠯᠢ ᠦᠭᠡᠢӨмнө хойно нууц номер адилгүй");
             }else {
                 //封装数据
                 user.setPassword(password);
@@ -46,7 +46,7 @@ public class EnrollServlet extends HttpServlet {
             //处理异常的结果
             ResultInfo resultInfo = new ResultInfo();
             resultInfo.setFlag(false);
-            resultInfo.setErrorMsg("数据异常，请联系管理员！");
+            resultInfo.setErrorMsg("ᠳᠠᠨᠭᠰᠠᠯᠠᠵᠤ ᠳᠡᠢᠯᠦᠦᠰᠰᠡᠨ ᠦᠭᠡᠢ᠂ ᠬᠠᠮᠢᠶᠠᠷᠤᠭᠴᠢ ᠲᠠᠢ ᠬᠠᠷᠢᠯᠴᠠᠭᠠᠷᠠᠢ︕Дансалж тайлууссангүй, хамаарагчтай харилцаарай!");
             registerJson = JSON.toJSONString(resultInfo);
         }
         //3、响应数据

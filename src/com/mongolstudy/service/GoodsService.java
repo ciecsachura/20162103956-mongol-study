@@ -12,7 +12,7 @@ public class GoodsService {
 
     public static String queryAll() {
         //查询数据：调用dao层查询数据
-        List<Goods> goodsList = goodsDao.queryAllGoods();
+        List<User> goodsList = goodsDao.queryAllGoods();
         //userList  ===>  JSON String
         String s = JSON.toJSONString(goodsList);
         return s;

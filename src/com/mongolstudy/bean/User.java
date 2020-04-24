@@ -17,6 +17,8 @@ public class User implements Serializable {
     private String admin;
     private String code;//激活码
     private int status;//激活状态
+    private String email;//邮箱
+    private double totaltime;
     /**
      * 无参构造方法
      */
@@ -71,6 +73,17 @@ public class User implements Serializable {
     public void setStatus(int status) {
         this.status = status;
     }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public double getTotaltime() { return totaltime;}
+    public void setTotaltime(double totaltime) {
+        this.totaltime = totaltime;
+    }
     @Override
     public String toString() {
         return "User{" +
@@ -81,9 +94,9 @@ public class User implements Serializable {
                 ", grade='" + grade+ '\'' +
                 ", admin='" + admin+ '\'' +
                 ", code='" + code + '\'' +
+                ", email='" + email + '\'' +
+                ", totaltime='" + totaltime + '\'' +
                 ", status=" + status +
                 '}';
     }
-
-
 }

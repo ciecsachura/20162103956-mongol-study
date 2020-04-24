@@ -1,5 +1,6 @@
 package com.mongolstudy.dao;
 import com.mongolstudy.bean.Message;
+import com.mongolstudy.bean.Studytime;
 import com.mongolstudy.bean.User;
 import com.mongolstudy.utils.C3p0Utils;
 import org.springframework.dao.DataAccessException;
@@ -111,6 +112,7 @@ public class AdminDao {
                 user.getGrade(),
                 user.getAdmin(),
                 user.getStatus(),
+                user.getEmail(),
                 user.getCode()
         );
         return update;
@@ -146,6 +148,11 @@ public class AdminDao {
         );
     }
 
+    /**
+     * 更改用户
+     * @param user
+     * @return
+     */
     public int updateUser(User user) {
         String sql = "update tab_user set username =?, password= ?,admin =? ,grade =? ,telephone = ? where uid = ?";
         int update = jdbcTemplate.update(sql,
@@ -159,6 +166,11 @@ public class AdminDao {
         return update;
     }
 
+    /**
+     * 查询用户
+     * @param cname
+     * @return
+     */
     public User queryByUsername(String cname) {
         String sql="SELECT * FROM tab_user WHERE username=? or telephone= ?";
         User user = new User();
@@ -170,9 +182,24 @@ public class AdminDao {
         }
     }
 
+    /**
+     * 删除用户
+     * @param mid
+     * @return
+     */
     public int delete(int mid) {
         String sql="DELETE FROM messagebox WHERE mid=? ";
         return jdbcTemplate.update(sql,mid
         );
+    }
+
+    /**
+     * 用户学习时间
+     * @return
+     */
+    public List<Studytime> queryAllStudyTime() {
+        String sql = "SELECT * FROM tab_studytime" ;
+        List<Studytime> studytimeList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Studytime.class));
+        return studytimeList;
     }
 }
